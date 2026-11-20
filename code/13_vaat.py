@@ -13,10 +13,12 @@
    with Z_t > 0 equals the number that actually received in year t. The dose is the sum of Z_t over
    2021-2025, in thousand reais per weighted student (nominal and at 2025 prices, IPCA annual mean).
    An alternative dose uses for g_t the growth of total Fundeb revenue (robustness check of the plan).
+   Also: the money received including the adjustments for 2023 and 2024; the IEI share of each year
+   received; and every dose summed up to 2023 (for the outcomes measured in 2023), at 2025 prices.
 5. Diagnostics that use no outcome data: density of x near the threshold, the share of the 2021
    money in the 2021-2025 total near the threshold, the slopes of later money on each side, and the
    partial F of the predicted dose once a cubic in x is controlled for.
-Inputs: data/fnde/vaat/*.pdf (see 00_download.py), data/ipca_1737.json
+Inputs: data/fnde/vaat/*.pdf and *.xlsx (see 00_download.py), data/ipca_1737.json
 Outputs: results/13_vaat_redes.csv, results/13_vaat_anos.csv, results/13_diagnosticos.csv
 """
 import os, re, json, subprocess
@@ -27,6 +29,7 @@ from config import DADOS, RES
 V = os.path.join(DADOS, 'fnde', 'vaat')
 NUM = r'\d{1,3}(?:\.\d{3})*,\d{2}'
 INT = r'\d{1,3}(?:\.\d{3})*'
+AJUSTES = {2023: ('acerto_vaat_2023_portaria_7_2026.xlsx', 3), 2024: ('ajuste_vaat_2024_portaria_3_2025.xlsx', 6)}
 OFICIAIS = {2021: ('portaria_10_2021.pdf', '. ANEXO III', '. ANEXO IV'),
             2022: ('portaria_6_2022.pdf', '. ANEXO III', '. ANEXO IV'),
             2023: ('anexo3_portaria_7_2023.pdf', None, None),
@@ -122,9 +125,29 @@ if __name__ == '__main__':
         g = receita[a] / receita[2021]
         r[f'previsto_alt_{a}'] = np.maximum(0.0, resumo.set_index('ano').loc[a, 'vaat_min'] - g * r['vaat2021'])
         resumo.loc[resumo['ano'] == a, ['receita_fundeb_bi', 'g_alt']] = receita[a], g
-    for tipo in ('recebido', 'previsto', 'previsto_alt'):
+    # robustness of the plan: money received including the later adjustments for 2023 and 2024 (Annex II of
+    # Portaria 7/2026 and of Portaria 3/2025, in reais). They are put per weighted student with the weighted
+    # enrollment implied by the December portaria of the same year (total over per-student complementation);
+    # for the few networks that appear only in the adjustment, the nearest year in which they received, or
+    # else the 2021 weighted enrollment of the Estudo Técnico 15/2021.
+    pond = pd.DataFrame({a: (o['comp'] / (o['pos'] - o['pre'])).set_axis(o['ibge']) for a, o in anos.items()})
+    for a, (arq, cab) in AJUSTES.items():
+        aj = pd.read_excel(os.path.join(V, arq), header=cab)
+        aj = aj[pd.to_numeric(aj.iloc[:, 2], errors='coerce').notna()]
+        aj = pd.Series(aj.iloc[:, 5].astype(float).values, index=aj.iloc[:, 2].astype(int).values)
+        mat = r['ibge'].map(pond[a])
+        for b in sorted(anos, key=lambda b: abs(b - a)):
+            mat = mat.fillna(r['ibge'].map(pond[b]))
+        mat = mat.fillna(r['mat_vaat'])
+        r[f'ajuste_{a}'] = r['ibge'].map(aj).fillna(0.0) / mat
+    for a in anos:
+        r[f'recebido_ajustado_{a}'] = r[f'recebido_{a}'] + r.get(f'ajuste_{a}', 0.0)
+        r[f'iei_{a}'] = r['ibge'].map(anos[a]['iei'].set_axis(anos[a]['ibge']))
+    r['iei_medio'] = r[[f'iei_{a}' for a in anos]].mean(axis=1)
+    for tipo in ('recebido', 'previsto', 'previsto_alt', 'recebido_ajustado'):
         r[f'dose_{tipo}'] = sum(r[f'{tipo}_{a}'] for a in anos) / 1000
         r[f'dose_{tipo}_2025'] = sum(r[f'{tipo}_{a}'] * defl[a] for a in anos) / 1000
+        r[f'dose_{tipo}_2023_2025'] = sum(r[f'{tipo}_{a}'] * defl[a] for a in anos if a <= 2023) / 1000
     r.to_csv(os.path.join(RES, '13_vaat_redes.csv'), sep=';', index=False, float_format='%.6f')
     resumo.to_csv(os.path.join(RES, '13_vaat_anos.csv'), sep=';', index=False, float_format='%.4f')
     print(resumo[['ano', 'g', 'parcela_amostra', 'receita_fundeb_bi', 'g_alt']].round(3).to_string(index=False))

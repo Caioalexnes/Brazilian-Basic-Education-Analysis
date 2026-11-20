@@ -4,7 +4,7 @@ From the Censo Escolar school file (schools in activity; from 2025 the counts co
 enrollments, classes and teachers, joined by school code):
   - creche and pre-school enrollment of municipal schools, plus that of private schools under agreement
     with the municipality (as in script 02), and the full-time share of each;
-  - full-time share of ensino fundamental, municipal schools;
+  - enrollment and full-time share of ensino fundamental, municipal schools;
   - students per class in the early grades of fundamental (enrollment over classes), municipal schools;
   - teachers per 100 students: teacher counts of each school (QT_DOC_BAS; a teacher who works in two
     schools is counted in both) over basic-education enrollment, municipal schools.
@@ -58,6 +58,7 @@ def censo(ano):
         r[f'mat_{e}_municipal'] = mun[f'QT_MAT_INF_{E}']
         r[f'mat_{e}'] = mun[f'QT_MAT_INF_{E}'] + conv_[f'QT_MAT_INF_{E}']
         r[f'integral_{e}'] = (mun[f'QT_MAT_INF_{E}_INT'] + conv_[f'QT_MAT_INF_{E}_INT']) / r[f'mat_{e}'].replace(0, np.nan)
+    r['mat_fundamental'] = mun['QT_MAT_FUND']
     r['integral_fundamental'] = mun['QT_MAT_FUND_INT'] / mun['QT_MAT_FUND'].replace(0, np.nan)
     r['alunos_turma_ai'] = mun['QT_MAT_FUND_AI'] / mun['QT_TUR_FUND_AI'].replace(0, np.nan)
     r['docentes_100_alunos'] = 100 * mun['QT_DOC_BAS'] / mun['QT_MAT_BAS'].replace(0, np.nan)

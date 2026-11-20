@@ -43,7 +43,7 @@ ARQUIVOS = {
     'inep/indicadores/HAD_2019_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2019/HAD_2019_MUNICIPIOS.zip',
     'inep/indicadores/HAD_2023_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2023/HAD_2023_MUNICIPIOS.zip',
     'inep/indicadores/HAD_2025_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2025/HAD_2025_MUNICIPIOS.zip',
-    'ipca_1737.json': 'https://apisidra.ibge.gov.br/values/t/1737/n1/all/v/2266/p/201612-202512',
+    'ipca_1737.json': 'https://apisidra.ibge.gov.br/values/t/1737/n1/all/v/2266/p/201501-202512',
     # IBGE: municipalities with their immediate geographic regions, and the 2020 population estimates
     'ibge_municipios.json': 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios',
     'pop_2020.json': 'https://apisidra.ibge.gov.br/values/t/6579/n6/all/v/9324/p/2020',

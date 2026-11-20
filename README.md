@@ -109,6 +109,8 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `17_participacao_saeb.py` | Saeb participation of the public schools of each municipality, 5th and 9th grades, 2017 and 2023 | `results/17_participacao_saeb.csv` |
 | `20_estimacao.py` | Estimators of the pre-analysis plan (long difference, dose response, event study, linear-trend correction, HonestDiD bounds through R, regression kink and its checks); reads no data | |
 | `21_teste_simulado.py` | Tests of those estimators on simulated outcomes, with the real treatment data: bias, coverage and rejection rates; the parts with `rdrobust` and HonestDiD need those packages and R | `results/21_simulacao_*` |
+| `22_etapa3.py` | Stage 3 of the plan: education spending per student (P1) with its robustness checks and heterogeneity, spending by stage and school inputs (S2), and an exploratory event study of spending; implementation details in `pap/detalhes_etapa3.md` | `results/22_*` |
+| `23_kink.py` | Regression kink of spending at the 2021 threshold, with its data check and validity checks (needs `rdrobust` and `rddensity`) | `results/23_kink.csv` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -126,6 +128,8 @@ python 09_publica_privada.py
 python 13_vaat.py
 python 14_poder.py
 python 21_teste_simulado.py ld dose es dentro
+python 22_etapa3.py
+python 23_kink.py
 ```
 
 Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven
