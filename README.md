@@ -73,6 +73,9 @@ revenues; a comparison between the municipal and the state network of the same m
 regression kink at the 2021 threshold for spending. The plan was written before any outcome was
 related to the treatment. Scripts 13 and 14 reproduce every number in it and use no outcome data in
 relation to the dose. The outcome regressions will be added only after the plan is deposited.
+Version 2.0 of the plan was deposited on Zenodo on 20 November 2026,
+[doi:10.5281/zenodo.24391651](https://doi.org/10.5281/zenodo.24391651); it is the file
+`pap/vaat_pap.pdf` of commit `06ba1ca` (tag `pap-v2.0`) of this repository.
 
 The 2021 VAAT of the 5,234 networks habilitated by mid-2021 comes from the annex of the Câmara's
 Estudo Técnico 15/2021, which reproduces Portarias Interministeriais 3/2021 and 4/2021. For the 1,422

@@ -10,3 +10,7 @@ authors:
     affiliation: "Independent researcher"
 repository-code: "https://github.com/Caioalexnes/Brazilian-Basic-Education-Analysis"
 license: MIT
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24391651
+    description: "Pre-analysis plan, version 2.0 (Zenodo)"
