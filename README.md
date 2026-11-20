@@ -112,6 +112,7 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `22_etapa3.py` | Stage 3 of the plan: education spending per student (P1) with its robustness checks and heterogeneity, spending by stage and school inputs (S2), and an exploratory event study of spending; implementation details in `pap/detalhes_etapa3.md` | `results/22_*` |
 | `23_kink.py` | Regression kink of spending at the 2021 threshold, with its data check and validity checks (needs `rdrobust` and `rddensity`) | `results/23_kink.csv` |
 | `24_gasto_exploratorio.py` | Exploratory, not in the plan: event studies of spending per student (trimmed, balanced panel), of ln spending and of ln enrollment; the mechanical benchmark of each year; long differences of spending from baselines before 2019 | `results/24_gasto_exploratorio.csv` |
+| `25_matriculas_redes.py` | Exploratory, not in the plan: enrollment by municipality, network and stage, 2015 to 2025 (Censo Escolar), and event studies of enrollment by network and of the state share of public fundamental enrollment | `results/25_*` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -132,6 +133,7 @@ python 21_teste_simulado.py ld dose es dentro
 python 22_etapa3.py
 python 23_kink.py
 python 24_gasto_exploratorio.py
+python 25_matriculas_redes.py
 ```
 
 Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven
