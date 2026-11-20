@@ -1,0 +1,20 @@
+teste;tipo;estimativa;lo;hi;p;h;n
+pass-through, main (MSE-optimal h, local linear);fuzzy;0.8261;-6.5996;4.5728;0.7222;0.0558;1106.0000
+first-stage kink (reais per enrolled student per unit of x);sharp;6007.7539;;;;;
+reduced-form kink in spending;sharp;4950.9279;-39568.6700;27402.8908;;;
+pass-through, local quadratic;fuzzy;-1.3903;-10.4199;4.2664;0.4115;0.1074;2040.0000
+pass-through, h = 0.1;fuzzy;2.5887;-8.0001;4.2545;0.5491;0.1000;1913.0000
+pass-through, h = 0.2;fuzzy;3.4899;-0.4498;4.5546;0.1079;0.2000;3117.0000
+data check: complementation recorded as revenue in 2021;fuzzy;1.2184;-0.3884;3.3393;0.1208;0.0513;1044.0000
+difference in kinks: pre-period change (2016-17 to 2018-19);fuzzy;1.1356;-0.9884;3.8758;0.2447;0.0855;1595.0000
+difference in kinks: main minus pre-period change;fuzzy;0.0523;-9.4237;4.7396;0.5168;0.0562;1076.0000
+predetermined: 2019 spending per student (reais of 2021);sharp;-6680.5138;-50734.2317;25080.7307;0.5072;0.0997;1924.0000
+predetermined: INSE 2019;sharp;-2.7930;-14.3435;4.4856;0.3048;0.0911;1775.0000
+predetermined: ln population 2020;sharp;-2.6057;-23.9299;13.6557;0.5921;0.1016;1965.0000
+predetermined: ICMS share 2019;sharp;-0.6070;-2.6203;0.6543;0.2393;0.0846;1657.0000
+placebo threshold x = -0.10;sharp;-12669.8608;-85596.3380;48236.5231;0.5843;;
+placebo threshold x = -0.05;sharp;57742.4125;-137881.4209;309348.1833;0.4524;;
+placebo threshold x = +0.05;sharp;8407.4930;-83357.0369;121350.8165;0.7160;;
+placebo threshold x = +0.10;sharp;101986.8391;-114920.5047;434035.2424;0.2546;;
+permutation test (h = 0.2, 200 placebo thresholds);sharp;20967.7405;;;0.0000;;200.0000
+density test at x = 0;density;;;;0.5047;;
