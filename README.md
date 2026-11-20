@@ -106,13 +106,15 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `14_poder.py` | Power calculations of the pre-analysis plan, from pre-2019 outcome changes and the dose, without relating them | `results/14_*` |
 | `15_siconfi_receitas.py` | Downloads, for every municipality, selected revenues of the DCA (Anexo I-C): current revenue, the ICMS quota, the Union's complementation to the Fundeb and the transfers from the Fundeb | `data/siconfi/receitas_<year>.csv` |
 | `16_insumos.py` | School inputs of each municipal network in 2019, 2023 and 2025: creche and pre-school enrollment and full-time shares, full-time share of fundamental, students per class in the early grades, teachers per 100 students (Censo Escolar), share of teachers with higher education and daily class hours (Inep indicators) | `results/16_insumos.csv` |
-| `17_participacao_saeb.py` | Saeb participation of the public schools of each municipality, 5th and 9th grades, 2017 and 2023 | `results/17_participacao_saeb.csv` |
+| `17_participacao_saeb.py` | Saeb participation of the public schools of each municipality, 5th and 9th grades, 2017 and 2023, by the masked municipality code of the public files (it cannot be linked to IBGE codes) | `results/17_participacao_saeb.csv` |
 | `20_estimacao.py` | Estimators of the pre-analysis plan (long difference, dose response, event study, linear-trend correction, HonestDiD bounds through R, regression kink and its checks); reads no data | |
 | `21_teste_simulado.py` | Tests of those estimators on simulated outcomes, with the real treatment data: bias, coverage and rejection rates; the parts with `rdrobust` and HonestDiD need those packages and R | `results/21_simulacao_*` |
 | `22_etapa3.py` | Stage 3 of the plan: education spending per student (P1) with its robustness checks and heterogeneity, spending by stage and school inputs (S2), and an exploratory event study of spending; implementation details in `pap/detalhes_etapa3.md` | `results/22_*` |
 | `23_kink.py` | Regression kink of spending at the 2021 threshold, with its data check and validity checks (needs `rdrobust` and `rddensity`) | `results/23_kink.csv` |
 | `24_gasto_exploratorio.py` | Exploratory, not in the plan: event studies of spending per student (trimmed, balanced panel), of ln spending and of ln enrollment; the mechanical benchmark of each year; long differences of spending from baselines before 2019 | `results/24_gasto_exploratorio.csv` |
 | `25_matriculas_redes.py` | Exploratory, not in the plan: enrollment by municipality, network and stage, 2015 to 2025 (Censo Escolar), and event studies of enrollment by network and of the state share of public fundamental enrollment | `results/25_*` |
+| `26_etapa4.py` | Stage 4 of the plan: learning (P2) with its robustness checks and heterogeneity, the event study and linear-trend correction, the within-municipality comparison and negative control, and the secondary learning family (S1); implementation details in `pap/detalhes_etapa4.md` | `results/26_*` |
+| `27_honestdid.py` | HonestDiD relative-magnitudes bounds on the 2025 event-study coefficient of each grade (needs R with HonestDiD) | `results/27_*` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -134,6 +136,9 @@ python 22_etapa3.py
 python 23_kink.py
 python 24_gasto_exploratorio.py
 python 25_matriculas_redes.py
+python 26_etapa4.py
+python 27_honestdid.py 5
+python 27_honestdid.py 9
 ```
 
 Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven

@@ -69,3 +69,13 @@ leaves open; where the plan or Addendum 1 is explicit, it is followed. Section n
 
 11. Script 26 runs everything except HonestDiD and saves the event-study coefficients and their
     covariance; script 27 runs HonestDiD (needs R).
+
+## Amendment (20 November 2026, before any learning outcome was related to the dose)
+
+12. **Participation removed from S1.** The public Saeb school files of 2017 and 2023 mask the municipality
+    and school identifiers (sequential codes that change between editions and match neither the IBGE nor
+    the Censo codes), so the participation rate cannot be linked to the treatment data. Script 17 had
+    aggregated by the masked code as if it were the IBGE code; it now labels it as masked. S1 therefore
+    has 11 tests. Participation by municipality and network, or a table linking the masked codes, is
+    requested from Inep under the Access to Information Law; if it arrives, the analysis is added later
+    and reported as such.

@@ -1,4 +1,4 @@
-ano;cod_ibge;etapa;escolas;matriculados;presentes;participacao
+ano;id_municipio_saeb;etapa;escolas;matriculados;presentes;participacao
 2017;6305460;5EF;7;379.0000;363.0000;0.9578
 2017;6305461;5EF;23;1485.0000;1363.0000;0.9178
 2017;6305462;5EF;3;107.0000;102.0000;0.9533
