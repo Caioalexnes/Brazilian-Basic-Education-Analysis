@@ -77,6 +77,11 @@ Version 2.0 of the plan was deposited on Zenodo on 20 November 2026,
 [doi:10.5281/zenodo.24391651](https://doi.org/10.5281/zenodo.24391651); it is the file
 `pap/vaat_pap.pdf` of commit `06ba1ca` (tag `pap-v2.0`) of this repository.
 
+Addendum 1 (version 2.1, `pap/vaat_pap_adendo1.tex` and its PDF) amends the plan before any outcome is
+related to the treatment, after the estimators were tested on simulated outcomes (scripts 20 and 21):
+the pre-trend test uses a wild cluster bootstrap p-value, the breakdown value of the HonestDiD bounds
+no longer enters the interpretation rules, and the power of the kink is corrected.
+
 The 2021 VAAT of the 5,234 networks habilitated by mid-2021 comes from the annex of the Câmara's
 Estudo Técnico 15/2021, which reproduces Portarias Interministeriais 3/2021 and 4/2021. For the 1,422
 recipients that are also in the official December 2021 list (Portaria 10/2021), the two sources agree
@@ -97,6 +102,8 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `15_siconfi_receitas.py` | Downloads, for every municipality, selected revenues of the DCA (Anexo I-C): current revenue, the ICMS quota, the Union's complementation to the Fundeb and the transfers from the Fundeb | `data/siconfi/receitas_<year>.csv` |
 | `16_insumos.py` | School inputs of each municipal network in 2019, 2023 and 2025: creche and pre-school enrollment and full-time shares, full-time share of fundamental, students per class in the early grades, teachers per 100 students (Censo Escolar), share of teachers with higher education and daily class hours (Inep indicators) | `results/16_insumos.csv` |
 | `17_participacao_saeb.py` | Saeb participation of the public schools of each municipality, 5th and 9th grades, 2017 and 2023 | `results/17_participacao_saeb.csv` |
+| `20_estimacao.py` | Estimators of the pre-analysis plan (long difference, dose response, event study, linear-trend correction, HonestDiD bounds through R, regression kink and its checks); reads no data | |
+| `21_teste_simulado.py` | Tests of those estimators on simulated outcomes, with the real treatment data: bias, coverage and rejection rates; the parts with `rdrobust` and HonestDiD need those packages and R | `results/21_simulacao_*` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -113,6 +120,7 @@ python 08_atualizacao_2025.py
 python 09_publica_privada.py
 python 13_vaat.py
 python 14_poder.py
+python 21_teste_simulado.py ld dose es dentro
 ```
 
 Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven

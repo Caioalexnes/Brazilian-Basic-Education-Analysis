@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[authoryear,round]{natbib}
+\setlist{itemsep=2pt,topsep=4pt}
+\newcommand{\reais}{R\$}
+
+\title{Where Does Federal Equalization Money Go?\\ Spending, School Inputs and Learning under Brazil's Fundeb VAAT\\[6pt]
+\large Pre-Analysis Plan, Addendum 1}
+\author{Caio A. F. Cunha\\ \small Independent researcher, ORCID 0009-0008-2153-901X}
+\date{Version 2.1 \quad November 2026}
+
+\begin{document}
+\maketitle
+
+\section{Status}
+
+This addendum amends version 2.0 of the plan \citep{cunha2026pap}, whose text is unchanged and remains part of this record. It was written before any outcome was related to the dose, the VAAT position or VAAT receipt. Since version 2.0, the author has assembled the outcome files (spending, revenues, school inputs, Saeb participation) and the covariates, and has looked only at their coverage and at national medians by year.
+
+The amendments follow from tests of the estimation code on simulated outcomes (scripts \texttt{20\_estimacao.py} and \texttt{21\_teste\_simulado.py} in \citealp{cunha2026a}). The simulation keeps the real treatment data of the 5,208 networks of the main sample: dose, state, immediate region, VAAT position, 2021 transfer and ratio of weighted to enrolled students. Covariates and outcomes are simulated with known effects, with shocks common to each immediate region, unit errors that fall with network size, state effects correlated with the state's mean dose, and, in the event study, errors that are serially correlated (AR(1), coefficient 0.6). In the kink, the error dispersion is the one implied by the power calculation of Section~9 of the plan. Table~\ref{tab:sim} summarizes the results.
+
+\section{Amendments}
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Pre-trend test (Section 7.3).} The $p$-value of the joint test of $\beta_k = 0$ for $k \le 2017$ is computed by the restricted wild cluster bootstrap \citep{cameron2008}, with Rademacher weights drawn by immediate geographic region and 999 draws. The $p$-value of the cluster-robust Wald statistic against $F(q, G-1)$ is also reported. In the simulation with parallel trends, the latter rejects in 8.6\% of 1,000 draws at the 5\% level, and the wild bootstrap in 6.6\% of 500 (simulation standard error 1.1 points).
+
+\item \textbf{Interpretation rules (Section 10).} The breakdown value of $\bar M$ no longer enters the rule. The third rule now reads: ``If the pre-trend test rejects, or if the negative control on the state network is significant, the learning results are presented as not robust to plausible violations of parallel trends.'' The relative-magnitudes bounds for $\bar M \in \{0.5, 1, 1.5, 2\}$ and the breakdown value are still reported for every P2 outcome, next to the breakdown values obtained in the simulation. The reason is that, in this design, the breakdown value is below 1 even when parallel trends hold exactly and the effect is large. The target coefficient, $\beta_{2025}$, lies three periods after the reference year. The bounds allow the violation to grow in each of those periods by $\bar M$ times the largest change between consecutive pre-period coefficients. When trends are parallel, that largest change is pure sampling noise, and the largest of seven noisy changes is large relative to the standard error of $\beta_{2025}$. In the simulation with parallel trends, the breakdown value was below 1 in all draws: between 0 and 0.56 (median 0.28, six draws) for an effect of 2.9 standard errors, and between 0.56 and 0.88 (median 0.63, four draws) for an effect of 5.6 standard errors. Each draw takes about a minute, which is why there are few, but the result follows from the construction of the bounds. A threshold that is crossed whatever the data carries no information about robustness.
+
+\item \textbf{Negative control (Section 7.4).} A non-significant negative control is not read as evidence against local confounding. In the simulation, a local shock that biases the estimate without the state network by 22\% of the effect makes the negative control significant in only 8\% of the draws. The within-municipality estimate itself removes that bias.
+\end{enumerate}
+
+\section{Errata}
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Section 5.} The share of sample networks that received in 2022 is 37.7\%, not 37.6\% (\texttt{results/13\_vaat\_anos.csv}).
+
+\item \textbf{Sections 7.6 and 9 (power of the kink).} The plan states that the kink can detect a pass-through of about 0.82 with a bandwidth of 0.2 and can distinguish full pass-through from none. That calculation assumed robust bias-corrected intervals twice as wide as conventional ones. In the simulation they are 3.5 times as wide at a fixed bandwidth of 0.2, and the MSE-optimal bandwidth chosen by \texttt{rdrobust} averages 0.074. With the specification of the plan, the probability of rejecting zero pass-through when the pass-through is full is 16\% (43\% with a bandwidth of 0.2), and the minimum detectable pass-through at 80\% power is about 3 (about 1.7 with a bandwidth of 0.2). The kink therefore cannot distinguish full pass-through from none. It is still estimated and reported as planned, and the rule that a non-rejection of zero is not evidence of crowding out still applies. The permutation test of \citet{ganong2018}, listed among the validity checks, rejected zero in 98.5\% of the draws with full pass-through and in 6.0\% with none. It stays a validity check.
+
+\item \textbf{Section 11.} Statsmodels is not used. The estimators use numpy, scipy and pandas. The simulations ran with Python 3.10.12 (numpy 2.2.6, scipy 1.15.3, pandas 2.3.3, rdrobust 2.1.1, rddensity 3.0) and, for the parts without \texttt{rdrobust} and HonestDiD, Python 3.13 (numpy 2.5.3, scipy 1.18.1, pandas 3.0.5); R 4.5.3 with HonestDiD 0.2.8.
+\end{enumerate}
+
+\section{Details the plan left open}
+
+\begin{itemize}
+\item Standard errors clustered by immediate region use the CR1 correction $\frac{G}{G-1}\frac{n-1}{n-k}$, where $k$ counts the fixed effects not nested in the clusters (state effects in the long difference, state-by-year effects in the event study). The fixed effects of the event study are absorbed by alternating projections.
+\item Dose response: the intervals are percentile intervals from the bootstrap over immediate regions (999 draws), and the reported standard error is the standard deviation of the bootstrap draws. The knots are fixed at the terciles of the positive dose in the full sample.
+\item The breakdown value of $\bar M$ is found by bisection, to within 0.05.
+\item Kink placebo thresholds ($x = \pm 0.05$ and $\pm 0.10$) use only the observations on their own side of the true threshold, so that the true kink does not enter their window.
+\end{itemize}
+
+\section{Data that are not available}
+
+\begin{itemize}
+\item \textbf{Saeb participation.} In November 2026, Inep had not released the Saeb 2025 school files, so the post-treatment round of the participation outcome is 2023, as Section 3 of the plan provides.
+\item \textbf{Days without in-person classes in 2020.} The school-level data of Inep's survey on the response to the pandemic are not public. They were requested from Inep under the Access to Information Law (Law 12,527/2011) on 20 November 2026 (protocol 23546.158945/2026-03, response due by 14 December 2026). If they are not received before the analysis, robustness check 2 of Section 8 is not run.
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Estimators on simulated outcomes}\label{tab:sim}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Estimator & Quantity & Draws & True & Bias & Coverage & Rejects 0 \\
+\midrule
+Long difference & $\beta$ & 1,000 & 0.020 & 0.000 & 0.944 & 1.000 \\
+ & $\beta$, no effect & 1,000 & 0 & 0.000 & 0.947 & 0.053 \\
+Dose response & ATT$^o$ & 200 & 0.058 & $-0.001$ & 0.940 & 0.980 \\
+ & mean of $h'$ & 200 & 0.015 & $-0.001$ & 0.940 & 0.365 \\
+Event study & $\beta_{2025}$ & 1,000 & 0.020 & 0.000 & 0.942 & 1.000 \\
+ & pre-trend test, CR1 $F$ & 1,000 & & & & 0.086 \\
+ & pre-trend test, wild bootstrap & 500 & & & & 0.066 \\
+ & pre-trend test, wild, linear trend & 500 & & & & 0.804 \\
+ & $\beta_{2025}$ net of linear trend & 1,000 & 0.020 & 0.000 & 0.934 & 0.915 \\
+Within municipality & confounded: municipal only & 500 & 0.020 & 0.004 & 0.900 & 0.950 \\
+ & confounded: within & 500 & 0.020 & 0.001 & 0.946 & 0.604 \\
+ & confounded: negative control & 500 & 0 & 0.004 & 0.918 & 0.082 \\
+Kink & full pass-through, MSE $h$ & 134 & 1 & $-0.015$ & 0.993 & 0.164 \\
+ & full pass-through, $h = 0.2$ & 134 & 1 & $-0.018$ & 0.970 & 0.433 \\
+ & no pass-through, MSE $h$ & 134 & 0 & 0.016 & 0.955 & 0.045 \\
+ & placebo thresholds & 134 & & & & 0.058 \\
+ & density test, no manipulation & 134 & & & & 0.045 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\footnotesize Coverage of 95\% intervals; rejection at 5\%. Effects in outcome units per \reais{}~1,000 of dose. Dose response: $h(d) = 0.12(1 - e^{-d/4})$; 199 bootstrap draws per simulated sample. Within municipality: 1,000 municipalities with both networks. Event study with a linear pre-trend of 0.002 per round in the coefficients. Within municipality: a local shock correlated with the VAAT position. Kink: robust bias-corrected intervals from \texttt{rdrobust}; MSE $h$ is its MSE-optimal bandwidth. Files \texttt{results/21\_simulacao\_*.csv}.
+\end{table}
+
+\begin{thebibliography}{9}
+\bibitem[Cameron et~al.(2008)]{cameron2008} Cameron, A.~C., Gelbach, J.~B. and Miller, D.~L. (2008). Bootstrap-based improvements for inference with clustered errors. \textit{Review of Economics and Statistics}, 90(3):414--427.
+\bibitem[Cunha(2026a)]{cunha2026a} Cunha, C.~A.~F. (2026a). Brazilian-Basic-Education-Analysis: code and data for this paper. GitHub repository, \url{https://github.com/Caioalexnes/Brazilian-Basic-Education-Analysis}.
+\bibitem[Cunha(2026b)]{cunha2026pap} Cunha, C.~A.~F. (2026b). Where does federal equalization money go? Spending, school inputs and learning under Brazil's Fundeb VAAT. Pre-analysis plan, version 2.0. Zenodo, \url{https://doi.org/10.5281/zenodo.24391651}.
+\bibitem[Ganong and J\"ager(2018)]{ganong2018} Ganong, P. and J\"ager, S. (2018). A permutation test for the regression kink design. \textit{Journal of the American Statistical Association}, 113(522):494--504.
+\end{thebibliography}
+
+\end{document}

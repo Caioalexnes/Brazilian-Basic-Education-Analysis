@@ -1,0 +1,4 @@
+cenario;verdade;reps;t_medio;cobre_original;cobre_m1;m1_inclui_zero;quebra_mediana;quebra_min;quebra_max;quebra_abaixo_1;variacao_pre_mediana;segundos
+efeito0.01;0.01000;6;2.89045;1.00000;1.00000;1.00000;0.28125;0.00000;0.56250;1.00000;0.00361;59.10260
+efeito0.02;0.02000;4;5.57037;1.00000;1.00000;1.00000;0.62500;0.56250;0.87500;1.00000;0.00437;63.39737
+efeito0.02_pretendencia;0.02000;4;7.91789;0.50000;1.00000;1.00000;0.84375;0.68750;1.00000;0.75000;0.00523;66.79697
