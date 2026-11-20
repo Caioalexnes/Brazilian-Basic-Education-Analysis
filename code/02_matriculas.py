@@ -4,7 +4,7 @@ Denominator of spending per student, as in Todos Pela Educação (2025): basic-e
 (QT_MAT_BAS) of the municipal network (TP_DEPENDENCIA = 3), plus early-childhood enrollments
 (QT_MAT_INF) of private schools under agreement with the municipality (convênio or parceria with
 the municipal government, alone or with the state). Schools in activity only.
-Usage: python 02_matriculas.py 2017 2019 2023 2025
+Usage: python 02_matriculas.py 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
 Input: DADOS/inep/microdados_censo_escolar_<year>.zip (from 2025, enrollments come in a separate
        table, Tabela_Matricula, joined to the school table by school code)
 Output: results/02_matriculas.csv (ano;cod_ibge;mat_rede_municipal;mat_infantil_conveniada;matriculas)
@@ -20,7 +20,7 @@ def tabela(z, sufixo):
 
 def ler(ano):
     z = zipfile.ZipFile(os.path.join(DADOS, 'inep', f'microdados_censo_escolar_{ano}.zip'))
-    unico = [n for n in z.namelist() if n.endswith(f'microdados_ed_basica_{ano}.csv')]
+    unico = [n for n in z.namelist() if n.lower().endswith(f'microdados_ed_basica_{ano}.csv')]   # 2020: .CSV
     # up to 2024 one school file; from 2025 the school file has no enrollment counts, which come in a
     # separate table (Tabela_Matricula, one row per school), linked by the school code
     nome = unico[0] if unico else tabela(z, f'Tabela_Matricula_{ano}')

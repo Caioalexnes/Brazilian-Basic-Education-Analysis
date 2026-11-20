@@ -12,6 +12,7 @@
    Z_t = max(0, VAAT-MIN_t - g_t * VAAT_2021), where g_t is set so that the number of sample networks
    with Z_t > 0 equals the number that actually received in year t. The dose is the sum of Z_t over
    2021-2025, in thousand reais per weighted student (nominal and at 2025 prices, IPCA annual mean).
+   An alternative dose uses for g_t the growth of total Fundeb revenue (robustness check of the plan).
 5. Diagnostics that use no outcome data: density of x near the threshold, the share of the 2021
    money in the 2021-2025 total near the threshold, the slopes of later money on each side, and the
    partial F of the predicted dose once a cubic in x is controlled for.
@@ -112,12 +113,21 @@ if __name__ == '__main__':
         g = resumo.set_index('ano').loc[a, 'vaat_min'] / corte
         r[f'previsto_{a}'] = np.maximum(0.0, resumo.set_index('ano').loc[a, 'vaat_min'] - g * r['vaat2021'])
         resumo.loc[resumo['ano'] == a, ['g', 'parcela_amostra']] = g, parcela
-    for tipo in ('recebido', 'previsto'):
+    # robustness of the plan: g_t from the growth of total Fundeb revenue. By the Constitution (ADCT, art. 60)
+    # the VAAT complementation is a fixed share of that revenue, so the revenue is the VAAT total over the
+    # share (2%, 5%, 6.25%, 7.5% and 9%); for 2021 and 2022 this matches the sum of Annex I of the portaria.
+    PARCELA_VAAT = {2021: 0.02, 2022: 0.05, 2023: 0.0625, 2024: 0.075, 2025: 0.09}
+    receita = {a: resumo.set_index('ano').loc[a, 'total_bi'] / PARCELA_VAAT[a] for a in anos}
+    for a in anos:
+        g = receita[a] / receita[2021]
+        r[f'previsto_alt_{a}'] = np.maximum(0.0, resumo.set_index('ano').loc[a, 'vaat_min'] - g * r['vaat2021'])
+        resumo.loc[resumo['ano'] == a, ['receita_fundeb_bi', 'g_alt']] = receita[a], g
+    for tipo in ('recebido', 'previsto', 'previsto_alt'):
         r[f'dose_{tipo}'] = sum(r[f'{tipo}_{a}'] for a in anos) / 1000
         r[f'dose_{tipo}_2025'] = sum(r[f'{tipo}_{a}'] * defl[a] for a in anos) / 1000
     r.to_csv(os.path.join(RES, '13_vaat_redes.csv'), sep=';', index=False, float_format='%.6f')
     resumo.to_csv(os.path.join(RES, '13_vaat_anos.csv'), sep=';', index=False, float_format='%.4f')
-    print(resumo[['ano', 'g', 'parcela_amostra']].round(3).to_string(index=False))
+    print(resumo[['ano', 'g', 'parcela_amostra', 'receita_fundeb_bi', 'g_alt']].round(3).to_string(index=False))
 
     # diagnostics (no outcome data)
     m = r[principal]

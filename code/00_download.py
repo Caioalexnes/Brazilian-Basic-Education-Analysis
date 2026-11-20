@@ -18,9 +18,16 @@ from config import DADOS
 AQUI = os.path.dirname(os.path.abspath(__file__))
 INEP = 'https://download.inep.gov.br/'
 ARQUIVOS = {
+    'inep/microdados_censo_escolar_2015.zip': INEP + 'dados_abertos/microdados_censo_escolar_2015.zip',
+    'inep/microdados_censo_escolar_2016.zip': INEP + 'dados_abertos/microdados_censo_escolar_2016.zip',
     'inep/microdados_censo_escolar_2017.zip': INEP + 'dados_abertos/microdados_censo_escolar_2017.zip',
+    'inep/microdados_censo_escolar_2018.zip': INEP + 'dados_abertos/microdados_censo_escolar_2018.zip',
     'inep/microdados_censo_escolar_2019.zip': INEP + 'dados_abertos/microdados_censo_escolar_2019.zip',
+    'inep/microdados_censo_escolar_2020.zip': INEP + 'dados_abertos/microdados_censo_escolar_2020.zip',
+    'inep/microdados_censo_escolar_2021.zip': INEP + 'dados_abertos/microdados_censo_escolar_2021.zip',
+    'inep/microdados_censo_escolar_2022.zip': INEP + 'dados_abertos/microdados_censo_escolar_2022.zip',
     'inep/microdados_censo_escolar_2023.zip': INEP + 'dados_abertos/microdados_censo_escolar_2023.zip',
+    'inep/microdados_censo_escolar_2024.zip': INEP + 'dados_abertos/microdados_censo_escolar_2024.zip',
     # the 2025 file name on Inep's server ends with an underscore
     'inep/microdados_censo_escolar_2025.zip': INEP + 'dados_abertos/microdados_censo_escolar_2025_.zip',
     'inep/divulgacao_anos_iniciais_municipios_2025.zip': INEP + 'ideb/resultados/divulgacao_anos_iniciais_municipios_2025.zip',
@@ -28,7 +35,14 @@ ARQUIVOS = {
     'inep/divulgacao_brasil_ideb_2025.zip': INEP + 'ideb/resultados/divulgacao_brasil_ideb_2025.zip',
     'inep/INSE_2019_MUNICIPIOS.xlsx': INEP + 'informacoes_estatisticas/indicadores_educacionais/2019/nivel_socioeconomico/INSE_2019_MUNICIPIOS.xlsx',
     'inep/INSE_2023_municipios.xlsx': INEP + 'informacoes_estatisticas/indicadores_educacionais/2023/nivel_socioeconomico/INSE_2023_municipios.xlsx',
+    'inep/microdados_saeb_2017.zip': INEP + 'microdados/microdados_saeb_2017.zip',
     'inep/microdados_saeb_2023.zip': INEP + 'microdados/microdados_saeb_2023.zip',
+    'inep/indicadores/DSU_2019_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2019/DSU_2019_MUNICIPIOS.zip',
+    'inep/indicadores/DSU_2023_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2023/DSU_2023_MUNICIPIOS.zip',
+    'inep/indicadores/DSU_2025_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2025/DSU_2025_MUNICIPIOS.zip',
+    'inep/indicadores/HAD_2019_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2019/HAD_2019_MUNICIPIOS.zip',
+    'inep/indicadores/HAD_2023_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2023/HAD_2023_MUNICIPIOS.zip',
+    'inep/indicadores/HAD_2025_MUNICIPIOS.zip': INEP + 'informacoes_estatisticas/indicadores_educacionais/2025/HAD_2025_MUNICIPIOS.zip',
     'ipca_1737.json': 'https://apisidra.ibge.gov.br/values/t/1737/n1/all/v/2266/p/201612-202512',
     # IBGE: municipalities with their immediate geographic regions, and the 2020 population estimates
     'ibge_municipios.json': 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios',

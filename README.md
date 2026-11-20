@@ -95,6 +95,8 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `13_vaat.py` | VAAT complementation, 2021 to 2025: the 2021 VAAT of every habilitated network, the recipients and amounts of each year, the validation against the official 2021 list, the position relative to the 2021 threshold, the money received and the dose predicted by the formula, and diagnostics that use no outcome data | `results/13_*` |
 | `14_poder.py` | Power calculations of the pre-analysis plan, from pre-2019 outcome changes and the dose, without relating them | `results/14_*` |
 | `15_siconfi_receitas.py` | Downloads, for every municipality, selected revenues of the DCA (Anexo I-C): current revenue, the ICMS quota, the Union's complementation to the Fundeb and the transfers from the Fundeb | `data/siconfi/receitas_<year>.csv` |
+| `16_insumos.py` | School inputs of each municipal network in 2019, 2023 and 2025: creche and pre-school enrollment and full-time shares, full-time share of fundamental, students per class in the early grades, teachers per 100 students (Censo Escolar), share of teachers with higher education and daily class hours (Inep indicators) | `results/16_insumos.csv` |
+| `17_participacao_saeb.py` | Saeb participation of the public schools of each municipality, 5th and 9th grades, 2017 and 2023 | `results/17_participacao_saeb.csv` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -103,7 +105,9 @@ and 13 also need `pdftotext`, from poppler):
 python 00_download.py
 python 01_siconfi_dca.py 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
 python 15_siconfi_receitas.py 2019 2021
-python 02_matriculas.py 2017 2019 2023 2025
+python 16_insumos.py
+python 17_participacao_saeb.py
+python 02_matriculas.py 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
 python 03_gasto_ideb.py
 python 08_atualizacao_2025.py
 python 09_publica_privada.py
@@ -159,6 +163,8 @@ Municipalities may correct their DCA after the deadline, so a new download may d
 | `INSE_2019_MUNICIPIOS.xlsx`, `INSE_2023_municipios.xlsx` | Inep, Indicador de Nível Socioeconômico, `https://download.inep.gov.br/informacoes_estatisticas/indicadores_educacionais/` |
 | `ipca_1737.json` | IBGE, SIDRA, table 1737 (IPCA, número-índice), `https://apisidra.ibge.gov.br/` |
 | `microdados_saeb_2023.zip` | Inep, Microdados do Saeb 2023 (student files of the 2nd, 5th and 9th grades and of ensino médio), `https://download.inep.gov.br/microdados/` |
+| `microdados_saeb_2017.zip` | Inep, Microdados do Saeb 2017 (school file, participation), `https://download.inep.gov.br/microdados/` |
+| `indicadores/{DSU,HAD}_<year>_MUNICIPIOS.zip` | Inep, Indicadores Educacionais (percentual de docentes com curso superior; média de horas-aula diária), 2019, 2023 and 2025, `https://download.inep.gov.br/informacoes_estatisticas/indicadores_educacionais/` |
 | `divulgacao_brasil_ideb_2025.zip` | Inep, Ideb, resultados 2005-2025 for Brazil by network (national mean of private schools), `https://download.inep.gov.br/ideb/resultados/` |
 | `data/fnde/portaria_interministerial_5_2026.pdf` | MEC/MF, Portaria Interministerial nº 5, de 29 de abril de 2026 (Fundeb annual adjustment of 2025, VAAF, VAAT and VAAR by government), FNDE site |
 | `data/fnde/vaat/et15_2021.pdf` | Câmara dos Deputados, Consultoria de Orçamento, Estudo Técnico nº 15/2021 (C. R. Tanno, August 2021); its annex gives the 2021 VAAT, revenues and weighted enrollment of every habilitated network |
