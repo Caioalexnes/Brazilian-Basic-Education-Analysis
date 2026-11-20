@@ -12,5 +12,11 @@ repository-code: "https://github.com/Caioalexnes/Brazilian-Basic-Education-Analy
 license: MIT
 identifiers:
   - type: doi
+    value: 10.5281/zenodo.24391650
+    description: "Pre-analysis plan, all versions (Zenodo)"
+  - type: doi
+    value: 10.5281/zenodo.24394910
+    description: "Pre-analysis plan, version 2.1: version 2.0 and Addendum 1 (Zenodo)"
+  - type: doi
     value: 10.5281/zenodo.24391651
     description: "Pre-analysis plan, version 2.0 (Zenodo)"

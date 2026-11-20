@@ -80,7 +80,12 @@ Version 2.0 of the plan was deposited on Zenodo on 20 November 2026,
 Addendum 1 (version 2.1, `pap/vaat_pap_adendo1.tex` and its PDF) amends the plan before any outcome is
 related to the treatment, after the estimators were tested on simulated outcomes (scripts 20 and 21):
 the pre-trend test uses a wild cluster bootstrap p-value, the breakdown value of the HonestDiD bounds
-no longer enters the interpretation rules, and the power of the kink is corrected.
+no longer enters the interpretation rules, and the power of the kink is corrected. It was deposited
+on 20 November 2026 as version 2.1 of the same Zenodo record,
+[doi:10.5281/zenodo.24394910](https://doi.org/10.5281/zenodo.24394910), with the unchanged PDF of
+version 2.0; it is the file `pap/vaat_pap_adendo1.pdf` of commit `0161ca2`.
+[doi:10.5281/zenodo.24391650](https://doi.org/10.5281/zenodo.24391650) always resolves to the latest
+version of the plan.
 
 The 2021 VAAT of the 5,234 networks habilitated by mid-2021 comes from the annex of the Câmara's
 Estudo Técnico 15/2021, which reproduces Portarias Interministeriais 3/2021 and 4/2021. For the 1,422
