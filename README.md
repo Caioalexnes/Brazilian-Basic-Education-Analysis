@@ -91,13 +91,15 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `09_publica_privada.py` | Public versus private schools in the Saeb 2023, with and without the INSE of the student and of the school | `results/09_*.csv` |
 | `13_vaat.py` | VAAT complementation, 2021 to 2025: the 2021 VAAT of every habilitated network, the recipients and amounts of each year, the validation against the official 2021 list, the position relative to the 2021 threshold, the money received and the dose predicted by the formula, and diagnostics that use no outcome data | `results/13_*` |
 | `14_poder.py` | Power calculations of the pre-analysis plan, from pre-2019 outcome changes and the dose, without relating them | `results/14_*` |
+| `15_siconfi_receitas.py` | Downloads, for every municipality, selected revenues of the DCA (Anexo I-C): current revenue, the ICMS quota, the Union's complementation to the Fundeb and the transfers from the Fundeb | `data/siconfi/receitas_<year>.csv` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
 
 ```
 python 00_download.py
-python 01_siconfi_dca.py 2017 2019 2023 2025
+python 01_siconfi_dca.py 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
+python 15_siconfi_receitas.py 2019 2021
 python 02_matriculas.py 2017 2019 2023 2025
 python 03_gasto_ideb.py
 python 08_atualizacao_2025.py
@@ -106,9 +108,9 @@ python 13_vaat.py
 python 14_poder.py
 ```
 
-Script 01 makes one API call per municipality and year (about 22,000 calls for four years; a few
-minutes per year with the 12 parallel requests it uses) and can be interrupted and resumed. Its extracts for
-2017, 2019, 2023 and 2025 are included in `data/siconfi/`, so the other scripts can be run without it.
+Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven
+minutes per year with the 12 parallel requests they use) and can be interrupted and resumed. Their extracts
+are included in `data/siconfi/`, so the other scripts can be run without them.
 Municipalities may correct their DCA after the deadline, so a new download may differ slightly.
 
 ## Definitions
@@ -146,6 +148,9 @@ Municipalities may correct their DCA after the deadline, so a new download may d
 | File | Source |
 |---|---|
 | `data/siconfi/dca_<year>.csv` | Tesouro Nacional, Siconfi, API de dados abertos, `https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca` (DCA-Anexo I-E), downloaded in November 2026 |
+| `data/siconfi/receitas_<year>.csv` | Tesouro Nacional, Siconfi, same API (DCA-Anexo I-C), 2019 and 2021, downloaded in November 2026 |
+| `ibge_municipios.json` | IBGE, API de localidades, municipalities with their immediate geographic regions (2017 division), `https://servicodados.ibge.gov.br/api/v1/localidades/municipios` |
+| `pop_2020.json` | IBGE, SIDRA, table 6579 (population estimates, 2020), `https://apisidra.ibge.gov.br/` |
 | `microdados_censo_escolar_<year>.zip` | Inep, Microdados do Censo Escolar da Educação Básica, `https://download.inep.gov.br/dados_abertos/` |
 | `divulgacao_anos_{iniciais,finais}_municipios_2025.zip` | Inep, Ideb, resultados 2005-2025, `https://download.inep.gov.br/ideb/resultados/` |
 | `INSE_2019_MUNICIPIOS.xlsx`, `INSE_2023_municipios.xlsx` | Inep, Indicador de Nível Socioeconômico, `https://download.inep.gov.br/informacoes_estatisticas/indicadores_educacionais/` |

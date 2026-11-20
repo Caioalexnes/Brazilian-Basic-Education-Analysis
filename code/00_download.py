@@ -3,7 +3,8 @@
 Inep's download server (download.inep.gov.br) does not send the intermediate certificate of its TLS
 chain, so a plain download fails certificate verification. The intermediate certificate, issued by
 GlobalSign to RNP, is public and included in certs/; it is added to the usual root certificates, and
-verification stays on. Siconfi spending is downloaded by script 01; the IPCA comes from IBGE's API.
+verification stays on. Siconfi spending is downloaded by script 01 and selected revenues by script 15;
+the IPCA, the 2020 population and the immediate geographic regions come from IBGE's APIs.
 The Fundeb annual adjustment of 2025 (Portaria Interministerial MEC/MF nº 5/2026, with the VAAR by
 municipality) comes from the FNDE site.
 The VAAT files of script 13 (data/fnde/vaat/) come from the Câmara dos Deputados (Estudo Técnico
@@ -29,6 +30,9 @@ ARQUIVOS = {
     'inep/INSE_2023_municipios.xlsx': INEP + 'informacoes_estatisticas/indicadores_educacionais/2023/nivel_socioeconomico/INSE_2023_municipios.xlsx',
     'inep/microdados_saeb_2023.zip': INEP + 'microdados/microdados_saeb_2023.zip',
     'ipca_1737.json': 'https://apisidra.ibge.gov.br/values/t/1737/n1/all/v/2266/p/201612-202512',
+    # IBGE: municipalities with their immediate geographic regions, and the 2020 population estimates
+    'ibge_municipios.json': 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios',
+    'pop_2020.json': 'https://apisidra.ibge.gov.br/values/t/6579/n6/all/v/9324/p/2020',
     'fnde/portaria_interministerial_5_2026.pdf': 'https://www.gov.br/fnde/pt-br/acesso-a-informacao/acoes-e-programas/financiamento/'
         'fundeb/legislacao/2026/portaria-interministerial-mec-mf-no-5-de-29-de-abril-de-2026/@@download/file',
     # VAAT (script 13): 2021 VAAT of all habilitated networks, and the recipients of each year
