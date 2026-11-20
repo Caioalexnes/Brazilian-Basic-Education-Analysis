@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+title: "Where does federal equalization money go? Brazil's Fundeb VAAT (code and data)"
+version: "0.1"
+date-released: 2026-11-20
+authors:
+  - family-names: Cunha
+    given-names: "Caio A. F."
+    orcid: "https://orcid.org/0009-0008-2153-901X"
+    affiliation: "Independent researcher"
+repository-code: "https://github.com/Caioalexnes/Brazilian-Basic-Education-Analysis"
+license: MIT
