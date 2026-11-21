@@ -1,7 +1,7 @@
 """Figures and tables of the paper, from the results files of scripts 13 to 27. Reads no raw data except the
 Ideb files and the enrollment by network (script 25) for the descriptive table.
 
-Outputs: paper/figuras/f1 to f8 (.pdf and .png), paper/tabelas/t1 to t6 (.tex), results/28_numeros.json (every
+Outputs: paper/figuras/f1 to f9 (.pdf and .png), paper/tabelas/t1 to t6 (.tex), results/28_numeros.json (every
 number quoted in the text that is not in a table).
 """
 import os, json, importlib.util, warnings
@@ -108,16 +108,10 @@ if __name__ == '__main__':
 
     # F3: event studies of spending per student, ln spending and ln enrollment
     e22 = ler('22_evento_gasto.csv'); e24 = ler('24_gasto_exploratorio.csv')
-    mec = e24[e24['analise'] == 'mechanical benchmark']
     fig, ax = plt.subplots(1, 3, figsize=(7.2, 2.5))
     evento(ax[0], e22, AZUL, 'Estimate')
-    ax[0].scatter(mec['ano'], mec['beta'], s=18, facecolors='none', edgecolors=LARANJA, lw=1.2, zorder=3,
-                  label='Predicted VAAT money')
     ax[0].set_title('a. Spending per student (R\\$)', fontsize=9, color=TINTA, loc='left')
-    ax[0].legend(fontsize=7, loc='lower left')
     evento(ax[1], e24[e24['analise'] == 'ln spending'], AZUL, '', escala=100)
-    mecp = e24[e24['analise'] == 'mechanical benchmark, percent of 2019 spending']
-    ax[1].scatter(mecp['ano'], mecp['beta'], s=18, facecolors='none', edgecolors=LARANJA, lw=1.2, zorder=3)
     ax[1].set_title('b. ln spending (x 100)', fontsize=9, color=TINTA, loc='left')
     evento(ax[2], e24[e24['analise'] == 'ln enrollment'], AZUL, '', escala=100)
     ax[2].set_title('c. ln enrollment (x 100)', fontsize=9, color=TINTA, loc='left')
@@ -138,6 +132,27 @@ if __name__ == '__main__':
     ax[0].legend(fontsize=7, loc='lower left')
     fig.tight_layout()
     salvar(fig, 'f4_matriculas_redes')
+
+    # F9: where the spending came from (fixed 2019 denominator)
+    e29 = ler('29_evento_receitas.csv')
+    fig, ax = plt.subplots(figsize=(5.4, 3.0))
+    for serie, cor, rot, m, dx in (('gasto_educacao', AZUL, 'Education spending', 'o', -0.15),
+                                   ('fundeb_recebido', LARANJA, 'Transfers from the state Fundeb', 's', 0.0),
+                                   ('vaat_recebido', AQUA, 'VAAT money received', '^', 0.15)):
+        evento(ax, e29[e29['serie'] == serie], cor, rot, marcador=m, deslocamento=dx)
+    prev = e29[(e29['serie'] == 'vaat_previsto') & (e29['ano'] >= 2021)]
+    ax.scatter(prev['ano'] + 0.15, prev['beta'], s=20, facecolors='none', edgecolors=CINZA, lw=1.1, zorder=3,
+               label='VAAT money predicted by the dose')
+    ax.set_xticks([2015, 2017, 2019, 2021, 2023, 2025])
+    ax.set_ylabel('R\\$ of 2025 per student enrolled in 2019,\nper R\\$ 1,000 of dose, relative to 2019')
+    ax.legend(fontsize=7, loc='upper left')
+    salvar(fig, 'f9_decomposicao')
+    for serie in ('gasto_educacao', 'fundeb_recebido', 'vaat_recebido', 'vaat_previsto', 'complementacao_uniao', 'fundeb_liquido'):
+        t = e29[e29['serie'] == serie].set_index('ano')
+        num[f'decomp_{serie}'] = {int(k): [float(v['beta']), float(v['se'])] for k, v in t.iterrows()}
+        num[f'decomp_{serie}_p_pre_wild'] = float(t['p_pre_wild'].iloc[0])
+    rec = e24[e24['analise'] == 'VAAT money received per enrolled student'].set_index('ano')['beta']
+    num['vaat_recebido_por_matricula'] = {int(k): float(v) for k, v in rec.items()}
 
     # F8: municipal creche enrollment
     fig, ax = plt.subplots(figsize=(4.2, 2.6))
@@ -252,7 +267,9 @@ if __name__ == '__main__':
         r = p1.iloc[i]
         linhas.append(f'{nome} & {f(r.beta, 1)} & ({f(r.se, 1)}) & [{f(r.lo, 1)}, {f(r.hi, 1)}] & {n(r.n)} \\\\')
     r = p1.iloc[3]
-    linhas.append(f'Mechanical benchmark & {f(r.beta, 1)} & ({f(r.se, 1)}) & & \\\\')
+    linhas.append(f'Benchmark: predicted VAAT money, 2025 & {f(r.beta, 1)} & ({f(r.se, 1)}) & & \\\\')
+    r = e24[(e24['analise'] == 'VAAT money received per enrolled student') & (e24['ano'] == 2025)].iloc[0]
+    linhas.append(f'Benchmark: VAAT money received, 2025 & {f(r.beta, 1)} & ({f(r.se, 1)}) & & \\\\')
     linhas.append('\\midrule')
     for _, r in rb.iloc[1:].iterrows():
         k_ = r['especificacao'].split(' ', 1)[0]
@@ -261,7 +278,8 @@ if __name__ == '__main__':
            'Change in spending per student from 2019 to 2025, in reais of 2025, per R\\$ 1,000 of cumulative predicted dose. State '
            'fixed effects; covariates INSE 2019, ln population 2020 and ICMS share 2019; errors clustered by immediate region '
            '(509 clusters). ATT$^o$ and $h\'$: cubic B-spline in the dose, bootstrap over immediate regions (999 draws). '
-           'Mechanical benchmark: predicted 2025 VAAT money per enrolled student regressed on the dose with the same specification. '
+           'Benchmarks: the predicted and the received 2025 VAAT money per enrolled student (received includes the adjustments) regressed '
+           'on the dose with the same specification. '
            'Robustness rows follow the numbering of Section 8 of the plan. $^{*}$ $p<0.1$, $^{**}$ $p<0.05$, $^{***}$ $p<0.01$.', 'lrrcr')
 
     # T3: S2
