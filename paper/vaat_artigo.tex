@@ -1,0 +1,306 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\usepackage[authoryear,round]{natbib}
+\setlist{itemsep=2pt,topsep=4pt}
+\onehalfspacing
+\newcommand{\reais}{R\$}
+\graphicspath{{figuras/}}
+
+\title{Where Does Federal Equalization Money Go?\\ Spending, School Inputs and Learning under Brazil's Fundeb VAAT}
+\author{Caio A. F. Cunha\\ \small Independent researcher, ORCID 0009-0008-2153-901X}
+\date{Draft, November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Since 2021, Brazil's federal government tops up the education resources of every public school network whose resources per weighted student fall below a national minimum. By 2025 this complementation, the VAAT of the Fundeb, paid \reais{}~24.5 billion to 2,372 municipal networks. Following a pre-registered plan, I measure each network's exposure by the amount the legal formula predicts from fiscal data of 2019 and compare networks of the same state. The money went to the networks with the lowest spending and the poorest students, mostly in the Northeast. These networks were already on a different path: within states, their enrollment grew faster before 2019, partly because state schools were moving to them. The pre-registered estimate for spending per student is positive, but it is driven by this growth in enrollment, which lowered spending per student in the base year of the formula. Total spending, which shows no differential trend before 2019, rose by about two thirds of the predicted money from 2023 on. Learning did not change detectably. At the 75th percentile of exposure, the estimates are 0.02 student standard deviations in the 5th and 9th grades, and the 95\% intervals exclude effects larger than 0.050 and 0.055. In the 5th grade, the estimate equals the continuation of a trend that began well before the program.
+
+\medskip
+\noindent\textbf{Keywords:} school finance; intergovernmental transfers; Fundeb; continuous difference-in-differences; pre-analysis plan; Brazil.\\
+\textbf{JEL:} H75, H77, I22, I28.
+\end{abstract}
+
+\section{Introduction}
+
+Equalization transfers are the main tool that federations use to make the resources of local school systems less unequal. Brazil made such a transfer much larger in 2020. Constitutional Amendment 108 and Law 14.113 kept the Fundeb, the system of state-level funds that pools most education revenues, and added a federal complementation paid to individual school networks: the VAAT. Every network whose total resources per weighted student fall below a national minimum is topped up exactly to that minimum. The VAAT paid \reais{}~3.8 billion in 2021 and \reais{}~24.5 billion in 2025, to 2,372 of the country's 5,570 municipal networks (Figure~\ref{fig:anos}), and its share of the Fundeb keeps growing until 2026.
+
+This paper asks where that money went and what it did to spending, school inputs and learning in the municipal networks. The question has a simple version, whether the transfer raised spending and test scores, and a harder one, whether the design of the transfer allows us to tell. I answer both following a pre-analysis plan deposited before any outcome was related to the treatment \citep{cunha2026pap}, amended once before the analysis \citep{cunha2026add}. Each network's exposure, the dose, is the complementation that the legal formula predicts from fiscal data of 2019, summed over 2021 to 2025. Because the formula only converts differences in 2019 fiscal capacity into reais, the design compares networks of the same state with more and less fiscal capacity, and its credibility rests on whether their outcomes would have evolved in parallel without the VAAT. The plan therefore pairs the main estimate, a long difference with a continuous dose, with an event study, a comparison between the municipal and the state network of the same municipality, and a regression kink at the 2021 threshold.
+
+There are three findings. First, the money went where the formula says it should: to the networks with the least resources per student, which are also the poorest and are concentrated in the Northeast. In 2019, networks in the top tercile of the dose spent \reais{}~7,391 per student at 2025 prices, against \reais{}~13,448 in networks with no dose (Table~\ref{tab:descritivas}). They were also on a different path. Within states, their enrollment grew faster before 2019, by 2.2 log points per \reais{}~1,000 of dose between 2015 and 2019, partly because state schools were being handed over to the municipalities.
+
+Second, spending rose, but the design cannot attribute all of it to the VAAT. The pre-registered estimate is \reais{}~133 of additional spending per student for each \reais{}~1,000 of dose, about half of the predicted money. But spending per student had been falling in these networks relative to others until 2019, because their enrollment was growing; the base year of the formula is the bottom of that decline, and measured from earlier years the estimate is zero. Total spending tells a cleaner story: it has no differential trend before 2019, rises in 2020, and from 2023 on is higher by about two thirds of the predicted money. The regression kink, which the plan expected to have little power, is uninformative.
+
+Third, learning did not change detectably. At the 75th percentile of the dose, the pre-registered estimates are 0.022 student standard deviations in the 5th grade and in the 9th, with 95\% intervals that exclude effects above 0.050 and 0.055. These point estimates are close to the 0.018 that the plan expected if Brazilian schools turned money into learning at the rate estimated for the United States \citep{jackson2024}, but the design cannot distinguish them from zero. In the 5th grade the estimate is the continuation of a trend that began a decade before the program; net of that trend it is 0.007. The comparison within municipalities, which absorbs local shocks, is close to zero in both grades.
+
+The paper contributes in four ways. It is the first evaluation of the VAAT complementation that uses its formula to measure exposure and that studies spending and learning together. \citet{franca2026} study the VAAT and the supply of early childhood education with a binary treatment near the 2021 threshold; \citet{lima2025fundeb} study the effect of the new Fundeb on learning through each municipality's position in the 2019 redistribution, which predates and therefore does not isolate the reform. Second, it documents a problem that any evaluation of a per-student formula faces: a capacity measure divided by enrollment in a base year selects networks whose enrollment is growing, so comparisons of spending per student anchored in that year mix the transfer with the denominator. Third, it bounds the learning effect of a large equalization transfer in a middle-income country, adding to a literature built mostly on reforms in the United States \citep{jackson2016,lafortune2018,jackson2024} and on earlier Brazilian transfers \citep{menezes2007,litschig2013}. Fourth, every analytical choice was registered before the corresponding outcome was seen, and every departure from the plan, including two of my own errors, is reported in Appendix~\ref{app:desvios}.
+
+\section{The VAAT complementation}\label{sec:politica}
+
+The Fundeb is a set of 27 state-level funds. Each pools most of the education revenues of a state and its municipalities and redistributes them among the state network and the municipal networks of that state in proportion to enrollment, with weights by stage and modality. Before 2021 the federal government added only one complementation, now called the VAAF, to the funds of the states where resources per student were lowest. Constitutional Amendment 108/2020 made the Fundeb permanent and created two new federal complementations, both paid to individual networks: the VAAT, studied here, and the VAAR, which rewards learning results and is paid from 2023.
+
+For each network, the VAAT is the ratio of all resources earmarked for education, including Fundeb receipts and other earmarked revenues, to weighted enrollment (Law 14.113, art.~13, \S3). The revenues are those of the second year before the year of reference (art.~15), so the VAAT of 2021 uses 2019 revenues, and the weights of early childhood education are multiplied by 1.5 (art.~43). Each network below the national minimum, the VAAT-MIN, is topped up exactly to that minimum, provided it submitted its fiscal data on time (art.~13, \S4). Half of the total VAAT complementation must go to early childhood education, distributed among networks by an indicator, the IEI (art.~28); at least 15\% must go to capital spending (art.~27); and the money counts toward the rule that at least 70\% of Fundeb resources pay education professionals (art.~26). The VAAT share of the Fundeb grows from 2\% in 2021 to 10.5\% in 2026 \citep{tanno2021}.
+
+The VAAT-MIN rose from \reais{}~4,846 per weighted student in 2021 to \reais{}~8,021 in 2025, and the number of recipient municipal networks from 1,527 to 2,372 (Figure~\ref{fig:anos}). The 2021 money was small and paid from July 2021 to January 2022. The same reform made learning high-stakes for municipalities through the VAAR and through the requirement that every state distribute part of the municipal share of the ICMS according to learning outcomes.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{f1_vaat_anos.pdf}
+\caption{VAAT complementation by year. Annex III of the final December portaria of each year; nominal values. In 2025, one state network also received.}\label{fig:anos}
+\end{figure}
+
+\section{Data and sample}\label{sec:dados}
+
+The treatment data come from the official lists of each year. The VAAT of 2021 of the 5,234 networks habilitated by mid-2021 (5,208 municipal and 26 state networks) is reproduced, with each network's revenues and weighted enrollment, in the annex of \citet{tanno2021}; for the 1,422 recipients that also appear in the official December list it matches to within 0.024\%. The December portarias of 2021 to 2025 give the recipients, the amount per weighted student and the IEI share of each year, and the later adjustments for 2023 and 2024 are used in a robustness check.
+
+Spending is committed spending in function 12 (education) of the municipal accounts \citep[Siconfi, DCA, Annex I-E; definition of][]{cunha2026a}, divided by the enrollment of the municipal network plus the early childhood enrollment of private schools under agreement with the municipality, at 2025 prices. School inputs and enrollment by network come from the Censo Escolar and from Inep's educational indicators. Learning outcomes are Inep's Ideb files by municipality and network, which give for every round from 2005 to 2025 the Saeb mean scores in mathematics and Portuguese, their standardized mean $N$ on a scale from 0 to 10, the flow indicator $P$ and the Ideb. One point of $N$ equals 0.507 student standard deviations in the 5th grade and 0.574 in the 9th (Appendix~\ref{app:dados}).
+
+The main sample is the 5,208 municipal networks of the mid-2021 list. The 105 networks habilitated later enter only in a robustness check, because late habilitation may respond to the expected gain. A network enters a long difference if the outcome is observed in both years: 5,145 networks for spending, 4,768 for the 5th-grade $N$ and 2,726 for the 9th-grade $N$, which is observed only where the municipal network has enough students in the late grades.
+
+\section{Design}\label{sec:desenho}
+
+\subsection{The dose}
+
+Let $x_i = \text{VAAT}_{i,2021}/4{,}846.26 - 1$ be the position of network $i$ relative to the 2021 threshold. For each year $t$ from 2021 to 2025, the predicted complementation is
+\begin{equation}
+\hat Z_{it} = \max\left(0,\ \text{VAAT-MIN}_t - g_t \cdot \text{VAAT}_{i,2021}\right),
+\end{equation}
+where $g_t$ is set so that the number of sample networks with $\hat Z_{it}>0$ equals the number that actually received in year $t$. The dose $D_i = \sum_t \hat Z_{it}$ is in thousand reais of 2025 per weighted student. It depends only on data of 2019 and on one aggregate number per year, whereas the money actually received depends on later enrollment, which the VAAT itself affects. 59.0\% of the networks have $D_i=0$; among the others the median is 2.99, the 75th percentile 5.01 and the 90th percentile 6.65. Figure~\ref{fig:dose} shows the dose as a function of $x_i$. The correlation between the predicted dose and the money actually received is 0.775.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.55\linewidth]{f2_dose_posicao.pdf}
+\caption{Predicted dose and the 2021 VAAT position. Main sample, $x\le 1$. The dose is positive for some networks above the 2021 threshold because the threshold rose faster than their VAAT in later years.}\label{fig:dose}
+\end{figure}
+
+\subsection{Estimation}
+
+The main specification is a long difference,
+\begin{equation}\label{eq:ld}
+\Delta Y_i = \lambda_s + \beta D_i + \gamma' W_i + \varepsilon_i ,
+\end{equation}
+where $\lambda_s$ are state fixed effects, which absorb the VAAF, each state's ICMS rule and everything else common within a state, and $W_i$ holds the INSE of 2019 (the socioeconomic level of the network's students), the log of the 2020 population and the ICMS share of current revenue in 2019. Standard errors are clustered by IBGE immediate region (509 clusters). With a continuous dose, $\beta$ is an average causal response only under strong parallel trends and a linear dose response \citep{callaway2024}, so the plan gives equal prominence to $\text{ATT}^o$, the average effect on the treated relative to zero-dose networks, from a cubic B-spline in the dose estimated with the same fixed effects and covariates. The event study replaces $\Delta Y_i$ with the full panel, unit and state-by-year fixed effects and a dose coefficient for each year relative to 2019. Its pre-trend test uses a wild cluster bootstrap $p$-value \citep{cameron2008}; the plan's sensitivity analyses are the relative-magnitudes bounds of \citet{rambachan2023} and a dose-specific linear trend fitted to the coefficients from 2009 to 2017.
+
+The within-municipality comparison uses the state network of the same municipality, which faces the same local shocks but receives no municipal VAAT:
+\begin{equation}
+\Delta Y^{\text{mun}}_i - \Delta Y^{\text{state}}_i = \lambda_s + \beta^{W} D_i + \gamma' W_i + \varepsilon_i ,
+\end{equation}
+with the change in the state network alone as a negative control. Finally, the 2021 threshold creates a kink in the 2021 money as a function of $x_i$, which I use to estimate how much of the first transfers became spending \citep{card2015,calonico2014}.
+
+\subsection{Registration and what changed}
+
+The plan was deposited before any outcome was related to the dose. Before the analysis, I tested every estimator on simulated outcomes built on the real treatment data. Three problems led to an addendum, deposited before any outcome was used \citep{cunha2026add}: the cluster-robust pre-trend test rejected 8.6\% of the time under the null, so its $p$-value now comes from a wild bootstrap (6.6\%); the plan's rule that a breakdown value of $\bar M$ below 1 marks results as not robust was triggered in every simulation, even with parallel trends and effects of six standard errors, so it was removed; and the plan had overstated the power of the kink. Before each stage, the details the plan left open were fixed in a dated file, and one outcome, the Saeb participation rate, had to be dropped because Inep masks the municipality code in the public school files. Appendix~\ref{app:desvios} lists every departure.
+
+\section{Where the money went}\label{sec:onde}
+
+Table~\ref{tab:descritivas} compares networks by dose. The formula did what it was meant to do. The higher the dose, the lower the 2019 VAAT and the 2019 spending per student, the poorer the students and the lower the test scores. Networks in the top tercile spent 45\% less per student than networks with no dose; 78\% of them are in the Northeast, against 7\%. They are also larger and more municipalized: in the top tercile the state network had only 11\% of public fundamental enrollment, against 39\% in zero-dose municipalities.
+
+\begin{table}[t]
+\centering
+\caption{Networks by predicted dose}\label{tab:descritivas}
+\small
+\input{tabelas/t1_descritivas.tex}
+\end{table}
+
+The levels differ across states, but the design compares networks within a state, and within states the differences are about change. Figure~\ref{fig:matriculas} shows event studies of enrollment, with state-by-year fixed effects, by network. In municipalities with a higher dose, the state network was shrinking relative to others, before and after 2019: in the late grades of fundamental, state enrollment fell by 7.4 log points per \reais{}~1,000 of dose between 2015 and 2025, and municipal enrollment rose by 2.5. Students were moving from state to municipal schools. Total enrollment across all networks also grew steadily, by 1.5 to 1.7 log points per \reais{}~1,000 over the decade. All pre-trend tests reject ($p \le 0.004$).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\linewidth]{f4_matriculas_redes.pdf}
+\caption{Enrollment by network. Event-study coefficients of the dose on ln(1 + enrollment), $\times 100$, relative to 2019, with unit and state-by-year fixed effects and the covariates interacted with year; 95\% intervals clustered by immediate region. Exploratory, not in the plan.}\label{fig:matriculas}
+\end{figure}
+
+This matters for the design. The VAAT of 2021 divides 2019 revenues by 2019 enrollment. A network whose enrollment grew faster has, for the same revenues, a lower VAAT and a higher dose. The dose therefore selects networks that were absorbing students, and any outcome divided by enrollment, or affected by who the students are, is exposed to that selection.
+
+\section{Spending}\label{sec:gasto}
+
+\subsection{The pre-registered estimate}
+
+Table~\ref{tab:gasto} reports the pre-registered results. Each \reais{}~1,000 of predicted dose is associated with \reais{}~133 more spending per student in 2025 relative to 2019 (95\% interval 90 to 176); at the 75th percentile of the dose, \reais{}~668 per student per year. For comparison, \reais{}~1,000 of dose corresponds to \reais{}~281 of predicted VAAT money per enrolled student in 2025, so the estimate amounts to about half of the money. The estimate survives every robustness check of the plan except one: with $g_t$ taken from the growth of total Fundeb revenue, which gives a positive dose to most networks, it is $-22$ (interval $-70$ to 27).
+
+\begin{table}[t]
+\centering
+\caption{Spending per student (P1)}\label{tab:gasto}
+\small
+\input{tabelas/t2_gasto.tex}
+\end{table}
+
+The comparison between treated and untreated networks does not agree. $\text{ATT}^o$ is $-117$ (interval $-338$ to 133). The dose-response curve (Figure~\ref{fig:curva}) is negative for small doses, about $-700$ at the smallest, crosses zero near a dose of 5 and rises above \reais{}~2,000 at the largest. A transfer of a few hundred reais cannot lower spending by \reais{}~700; the curve says that networks just below the threshold differed from zero-dose networks in their spending trend, and that the positive $\beta$ comes from comparisons among treated networks.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.55\linewidth]{f5_curva_gasto.pdf}
+\caption{Dose-response curve of spending per student, 2019 to 2025. Cubic B-spline with interior knots at the terciles of the positive dose; 95\% bootstrap intervals over immediate regions.}\label{fig:curva}
+\end{figure}
+
+\subsection{What the event study shows}
+
+The plan has no event study for spending; Figure~\ref{fig:evento_gasto} adds one, labelled exploratory. Panel a shows that, relative to 2019, spending per student in high-dose networks was higher in every year from 2015 to 2018, by \reais{}~110 to 169 per \reais{}~1,000 of dose, and the pre-trend test rejects ($p=0.001$). In other words, 2019, the base year of the formula, is a trough, a version of the dip before program entry described by \citet{ashenfelter1978}. Measured from 2017 the long difference to 2025 is \reais{}~3 (standard error 24), and measured from the mean of 2015 to 2018 it is $-18$ (24).
+
+Panels b and c separate the numerator from the denominator. Total spending has no differential trend before 2019: the coefficients from 2015 to 2018 lie between $-0.3$ and $+0.1$ log points. Enrollment, in contrast, grew steadily into 2019 and stopped growing after 2020. The trough in spending per student is the denominator: the networks that the formula selects were adding students faster than their spending grew.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{f3_evento_gasto.pdf}
+\caption{Event studies of spending. Coefficients of the dose relative to 2019, with unit and state-by-year fixed effects and the covariates interacted with year; 95\% intervals clustered by immediate region. Hollow markers: predicted VAAT money per enrolled student regressed on the dose (panel a, reais of 2025) and as a percentage of 2019 spending per student (panel b). Exploratory, not in the plan.}\label{fig:evento_gasto}
+\end{figure}
+
+Total spending is the cleaner outcome, and it rose. Per \reais{}~1,000 of dose it was 1.2\% higher in 2020, before any VAAT payment, 3.6\% in 2021 and 3.3\% in 2025. The predicted VAAT money, as a share of each network's 2019 spending, is 2.6\% in 2021 and between 4.6\% and 4.9\% from 2023 to 2025 (hollow markers). The increase therefore exceeds the money in 2021, when payments were small and arrived late in the year, and is about two thirds of it from 2023 on. The rise in 2020 and the excess in 2021 point to another change, correlated with the dose, at the time of the reform; a likely candidate is the new distribution of the Fundeb within each state from 2021, which also depends on enrollment and its weights. Total spending pre-trends are flat, but the joint test still rejects ($p=0.025$), and spending in total is not the outcome the plan registered. I read the evidence as consistent with a pass-through of roughly two thirds, not as an estimate of it.
+
+\subsection{The regression kink}
+
+The kink at the 2021 threshold should identify the pass-through of the first transfers, but the plan's addendum warned that its minimum detectable pass-through is about 3. Table~\ref{tab:kink} confirms that it is uninformative: the estimate is 0.83, with a robust interval from $-6.6$ to 4.6. The validity checks pass: no kink in predetermined variables, no kink at placebo thresholds, and no discontinuity in the density of $x$ ($p=0.50$). Even the data check, the kink in the complementation recorded as revenue, which should be one, has an interval from $-0.4$ to 3.3. The permutation test of \citet{ganong2018} rejects ($p<0.005$), but it implies a pass-through near 3.5, and in simulations on the real support of $x$ it rejects too often under the null (Appendix~\ref{app:sim}); I do not read it as evidence.
+
+\section{School inputs}\label{sec:insumos}
+
+Table~\ref{tab:insumos} reports the 28 pre-registered tests on spending by stage and school inputs. Six pass the Benjamini-Hochberg threshold of 0.05. Spending per student rose with the dose in early childhood, by \reais{}~158 per \reais{}~1,000 in 2025, and in fundamental, by \reais{}~150 in 2025 and \reais{}~223 in 2023. Creche enrollment grew less in high-dose networks, by 3.8 log points per \reais{}~1,000 between 2019 and 2025 and by 4.3 between 2019 and 2023, and the full-time share of fundamental grew less, by 0.7 points by 2025.
+
+\begin{table}[t]
+\centering
+\caption{Spending by stage and school inputs (S2)}\label{tab:insumos}
+\small
+\input{tabelas/t3_insumos.tex}
+\end{table}
+
+These results inherit the problem of Section~\ref{sec:gasto}: they are changes from 2019 in quantities divided by enrollment or in enrollment itself. The creche result is the clearest case. In the exploratory event study, municipal creche enrollment in high-dose networks grew faster than elsewhere until 2019 and 2020 and slower afterwards (Figure~\ref{fig:matriculas_creche} in Appendix~\ref{app:extra}), so the negative estimate measures the end of an earlier expansion as much as anything the VAAT did, even though half of the money is earmarked for early childhood.
+
+\section{Learning}\label{sec:aprendizagem}
+
+\subsection{The pre-registered estimates}
+
+Table~\ref{tab:aprendizagem} reports the primary learning outcomes. Per \reais{}~1,000 of dose, $N$ rose by 0.0088 points in the 5th grade (Holm-adjusted $p=0.22$) and by 0.0077 in the 9th ($p=0.22$). At the 75th percentile of the dose this is 0.022 student standard deviations in both grades, with 95\% intervals from $-0.005$ to 0.050 and from $-0.011$ to 0.055. $\text{ATT}^o$ is 0.010 standard deviations in the 5th grade and $-0.002$ in the 9th, neither distinguishable from zero. None of the 11 secondary learning outcomes passes the Benjamini-Hochberg threshold; the smallest $q$-value is 0.21. The INSE of the network, a measure of who the students are, did not change with the dose in the pre-registered estimate, although its $\text{ATT}^o$ is negative ($-0.015$, interval $-0.025$ to $-0.005$).
+
+\begin{table}[t]
+\centering
+\caption{Learning (P2 and S1)}\label{tab:aprendizagem}
+\small
+\input{tabelas/t4_aprendizagem.tex}
+\end{table}
+
+The plan fixed how a null result is reported: by the largest effect the interval does not exclude. At the 75th percentile of the dose, that is 0.050 student standard deviations in the 5th grade and 0.055 in the 9th. The plan's power calculation put the minimum detectable effect at 0.037 and the effect expected under the returns that \citet{jackson2024} estimate for the United States at 0.018. The data therefore rule out large effects, but not effects of the size the international evidence suggests, and the point estimates are close to that size.
+
+The estimates are positive in every robustness check, and significant in three. With the 2019 level as a covariate, which the plan does not prefer because conditioning on the baseline level can itself bias a difference-in-differences when groups differ in levels, they are 0.015 and 0.012. Trimming the tails of the change gives 0.011 in the 5th grade. With the dose from the money actually received they are 0.042 and 0.043; that dose depends on enrollment after 2021, which is exactly why the plan uses the predicted one. In the 5th grade the estimate is larger in the Northeast (0.015 against $-0.010$, $p=0.017$ for the difference, one of six heterogeneity tests).
+
+\subsection{Trends}
+
+The pre-trend tests do not reject: $p=0.39$ in the 5th grade and 0.71 in the 9th. By the rules of the plan as amended, the learning results are not marked as fragile. Figure~\ref{fig:evento_N} shows why they should still be read with care in the 5th grade. The coefficients rise steadily from $-0.015$ in 2005 to $-0.005$ in 2017, zero in 2019 and 0.009 in 2025, close to the line fitted to 2009 to 2017. The joint test has little power against a smooth trend \citep{roth2022}. Net of the trend, the pre-registered sensitivity analysis gives 0.003 per \reais{}~1,000 in the 5th grade (standard error 0.009), or 0.007 standard deviations at the 75th percentile, with an interval from $-0.040$ to 0.055. In the 9th grade there is no such trend, and net of the fitted line the estimate is 0.016 (0.009), or 0.046 standard deviations, with an interval from $-0.002$ to 0.095.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\linewidth]{f6_evento_N.pdf}
+\caption{Event studies of $N$, the standardized Saeb mean of the municipal network. Coefficients of the dose relative to 2019 with 95\% intervals; dashed line: linear trend fitted to the coefficients of 2009 to 2017 and extrapolated, as pre-registered. The 2021 coefficient is reported but not interpreted (pandemic round).}\label{fig:evento_N}
+\end{figure}
+
+The relative-magnitudes bounds do not help much in this design. The original interval for 2025 already includes zero in both grades, so the breakdown value of $\bar M$ is zero; with $\bar M=1$ the interval spans $-0.028$ to 0.043 per \reais{}~1,000 in the 5th grade and $-0.032$ to 0.048 in the 9th. As the simulations behind the addendum showed, with 2025 three rounds after the reference year these bounds are wide even when trends are exactly parallel.
+
+\subsection{Within municipalities}
+
+Table~\ref{tab:dentro} compares the municipal and the state network of the same municipality, in the 816 municipalities with both networks observed in the 5th grade and the 1,081 in the 9th. The difference is $-0.031$ standard deviations at the 75th percentile in the 5th grade and 0.000 in the 9th, with intervals that reach $-0.106$ and 0.045, and $-0.069$ and 0.070. The negative control, the state network alone, is close to zero in both grades. The comparison absorbs local shocks, but it is exposed to the movement of students between the two networks documented in Section~\ref{sec:onde}, which changes the composition of both, and a non-significant negative control is weak evidence: in simulations it detected a confounder that biased the main estimate by 22\% only 8\% of the time.
+
+\begin{table}[t]
+\centering
+\caption{Within-municipality comparison and negative control}\label{tab:dentro}
+\small
+\input{tabelas/t5_dentro.tex}
+\end{table}
+
+Figure~\ref{fig:aprendizagem} brings the learning estimates together. All of them are within a band of about $\pm 0.1$ standard deviations at the 75th percentile of the dose, and none excludes zero.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{f7_aprendizagem.pdf}
+\caption{Learning estimates at the 75th percentile of the dose, in student standard deviations, with 95\% intervals. Dashed line: effect expected under the returns estimated for the United States \citep{jackson2024}, from the plan's power calculation.}\label{fig:aprendizagem}
+\end{figure}
+
+\section{Discussion}\label{sec:discussao}
+
+The VAAT sends federal money to the networks with the least resources per student, and it reached them: they are poorer, in the Northeast, and spent less. The difficulty for evaluation is that the same formula that targets them also selects networks that were changing. Dividing a base-year capacity by base-year enrollment picks networks whose enrollment had been growing, in large part because state schools were being transferred to them. That selection explains why the pre-registered estimate for spending per student is positive while the same comparison, anchored a few years earlier, is zero. It is a lesson for any evaluation of a per-student formula: the denominator of the formula is also the denominator of the outcome.
+
+Total spending, which is not divided by enrollment and shows no differential trend before 2019, rose in high-dose networks by about two thirds of the predicted money from 2023 on. Partial pass-through is common for intergovernmental grants, even if it is larger than an equivalent rise in local income would produce \citep{hines1995,gordon2004}. It is consistent with networks using part of the money to replace own resources, or with the earmark for capital spending and the timing of commitments. But the increase also started in 2020, before any payment, and exceeded the money in 2021, which suggests another change at the time of the reform that the design does not separate from the VAAT.
+
+On learning, the design is informative about large effects and not about small ones. Effects above about 0.05 standard deviations at the 75th percentile of the dose are unlikely; effects of 0.02, the size implied by the U.S. evidence, are well inside every interval. Two features of the program make large effects unlikely in any case. Half of the money is earmarked for early childhood, which the cohorts tested up to 2025 did not attend under the program.
+
+The analysis has limits that the data do not allow me to remove. The Saeb participation rate, a check on selection into the test, cannot be linked to municipalities in the public files; the school-level days without in-person classes in 2020 are not public; both were requested from Inep. The Saeb 2025 school files had not been released. And the enrollment shifts between networks that make the design hard are also a possible channel through which the VAAT itself works, which the data cannot separate either.
+
+\section{Conclusion}\label{sec:conclusao}
+
+Brazil's VAAT complementation reached the municipal networks it was designed for. Their spending rose, by an amount consistent with most but not all of the money, and their students' test scores did not change by more than about 0.05 standard deviations at the 75th percentile of exposure. The pre-registered estimate for spending per student is positive, but it reflects the growth in enrollment that the formula itself rewards; in the 5th grade, the positive learning estimate is the continuation of an older trend. The VAAT will keep growing until 2026. Measuring its effects better will require either outcomes that the formula does not divide, or variation in the money that does not come from the networks' own enrollment.
+
+\bigskip
+\noindent\textbf{Data and code.} Code, data and checksums: \citet{cunha2026a}. Pre-analysis plan and addendum: \citet{cunha2026pap,cunha2026add}.
+
+\begin{thebibliography}{99}
+\bibitem[Ashenfelter(1978)]{ashenfelter1978} Ashenfelter, O. (1978). Estimating the effect of training programs on earnings. \textit{Review of Economics and Statistics}, 60(1):47--57.
+\bibitem[Benjamini and Hochberg(1995)]{benjamini1995} Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. \textit{Journal of the Royal Statistical Society: Series B}, 57(1):289--300.
+\bibitem[Calonico et~al.(2014)]{calonico2014} Calonico, S., Cattaneo, M.~D. and Titiunik, R. (2014). Robust nonparametric confidence intervals for regression-discontinuity designs. \textit{Econometrica}, 82(6):2295--2326.
+\bibitem[Callaway et~al.(2024)]{callaway2024} Callaway, B., Goodman-Bacon, A. and Sant'Anna, P.~H.~C. (2024). Difference-in-differences with a continuous treatment. NBER Working Paper 32117.
+\bibitem[Cameron et~al.(2008)]{cameron2008} Cameron, A.~C., Gelbach, J.~B. and Miller, D.~L. (2008). Bootstrap-based improvements for inference with clustered errors. \textit{Review of Economics and Statistics}, 90(3):414--427.
+\bibitem[Card et~al.(2015)]{card2015} Card, D., Lee, D.~S., Pei, Z. and Weber, A. (2015). Inference on causal effects in a generalized regression kink design. \textit{Econometrica}, 83(6):2453--2483.
+\bibitem[Cattaneo et~al.(2020)]{cattaneo2020} Cattaneo, M.~D., Jansson, M. and Ma, X. (2020). Simple local polynomial density estimators. \textit{Journal of the American Statistical Association}, 115(531):1449--1455.
+\bibitem[Cunha(2026a)]{cunha2026a} Cunha, C.~A.~F. (2026a). Brazilian-Basic-Education-Analysis: code and data for this paper. GitHub repository, \url{https://github.com/Caioalexnes/Brazilian-Basic-Education-Analysis}.
+\bibitem[Cunha(2026b)]{cunha2026pap} Cunha, C.~A.~F. (2026b). Where does federal equalization money go? Spending, school inputs and learning under Brazil's Fundeb VAAT. Pre-analysis plan, version 2.0. Zenodo, \url{https://doi.org/10.5281/zenodo.24391651}.
+\bibitem[Cunha(2026c)]{cunha2026add} Cunha, C.~A.~F. (2026c). Pre-analysis plan, Addendum 1 (version 2.1). Zenodo, \url{https://doi.org/10.5281/zenodo.24394910}.
+\bibitem[Franca and Machado(2026)]{franca2026} Franca, M.~P. and Machado, D.~C. (2026). Transferências do Fundeb e oferta de educação infantil: os efeitos da complementação VAAT. Paper submitted to the 54th Encontro Nacional de Economia (Anpec).
+\bibitem[Ganong and J\"ager(2018)]{ganong2018} Ganong, P. and J\"ager, S. (2018). A permutation test for the regression kink design. \textit{Journal of the American Statistical Association}, 113(522):494--504.
+\bibitem[Gordon(2004)]{gordon2004} Gordon, N. (2004). Do federal grants boost school spending? Evidence from Title I. \textit{Journal of Public Economics}, 88(9--10):1771--1792.
+\bibitem[Hines and Thaler(1995)]{hines1995} Hines, J.~R. and Thaler, R.~H. (1995). Anomalies: the flypaper effect. \textit{Journal of Economic Perspectives}, 9(4):217--226.
+\bibitem[Holm(1979)]{holm1979} Holm, S. (1979). A simple sequentially rejective multiple test procedure. \textit{Scandinavian Journal of Statistics}, 6(2):65--70.
+\bibitem[Jackson et~al.(2016)]{jackson2016} Jackson, C.~K., Johnson, R.~C. and Persico, C. (2016). The effects of school spending on educational and economic outcomes: evidence from school finance reforms. \textit{Quarterly Journal of Economics}, 131(1):157--218.
+\bibitem[Jackson and Mackevicius(2024)]{jackson2024} Jackson, C.~K. and Mackevicius, C.~L. (2024). What impacts can we expect from school spending policy? Evidence from evaluations in the United States. \textit{American Economic Journal: Applied Economics}, 16(1):412--446.
+\bibitem[Lafortune et~al.(2018)]{lafortune2018} Lafortune, J., Rothstein, J. and Schanzenbach, D.~W. (2018). School finance reform and the distribution of student achievement. \textit{American Economic Journal: Applied Economics}, 10(2):1--26.
+\bibitem[Lima et~al.(2025)]{lima2025fundeb} Lima, R.~J.~V.~S., Sampaio, L.~M.~B., Sampaio, R.~M.~B. and Cruz, T.~S. (2025). Avaliação dos efeitos do Novo Fundeb sobre indicadores educacionais. Paper for the 53rd Encontro Nacional de Economia (Anpec).
+\bibitem[Litschig and Morrison(2013)]{litschig2013} Litschig, S. and Morrison, K.~M. (2013). The impact of intergovernmental transfers on education outcomes and poverty reduction. \textit{American Economic Journal: Applied Economics}, 5(4):206--240.
+\bibitem[Menezes-Filho and Pazello(2007)]{menezes2007} Menezes-Filho, N. and Pazello, E. (2007). Do teachers' wages matter for proficiency? Evidence from a funding reform in Brazil. \textit{Economics of Education Review}, 26(6):660--672.
+\bibitem[Rambachan and Roth(2023)]{rambachan2023} Rambachan, A. and Roth, J. (2023). A more credible approach to parallel trends. \textit{Review of Economic Studies}, 90(5):2555--2591.
+\bibitem[Roth(2022)]{roth2022} Roth, J. (2022). Pretest with caution: event-study estimates after testing for parallel trends. \textit{American Economic Review: Insights}, 4(3):305--322.
+\bibitem[Tanno(2021)]{tanno2021} Tanno, C.~R. (2021). Fundeb 2021 e complementação-VAAT: condicionantes legais, transferências resultantes, projeções e convergência com o Custo Aluno Qualidade. Estudo Técnico 15/2021, Consultoria de Orçamento e Fiscalização Financeira, Câmara dos Deputados.
+\end{thebibliography}
+
+\appendix
+
+\section{Departures from the plan}\label{app:desvios}
+
+\begin{enumerate}[label=A\arabic*.]
+\item \textbf{Addendum 1} (deposited before any outcome was used): wild bootstrap $p$-value for the pre-trend test; breakdown value of $\bar M$ removed from the interpretation rules; note on the negative control; errata on the 2022 share of recipients (37.7\%, not 37.6\%), on the power of the kink (minimum detectable pass-through about 3, not 0.82) and on the software \citep{cunha2026add}.
+\item \textbf{Implementation details} of stages 3 and 4, fixed in dated files before the corresponding outcomes were related to the dose (files detalhes\_etapa3.md and detalhes\_etapa4.md in the folder pap of \citealp{cunha2026a}).
+\item \textbf{Saeb participation removed from S1.} Inep's public Saeb school files mask the municipality and school codes. My script first aggregated them as if the masked code were the IBGE code; I found the error before any learning outcome was used, corrected the script and removed the outcome. The data were requested from Inep.
+\item \textbf{Days without in-person classes in 2020} (robustness check 2) are not public; requested from Inep, protocol 23546.158945/2026-03.
+\item \textbf{Saeb 2025 school files} were not released, so the post-treatment round for participation would have been 2023, as the plan provides.
+\item \textbf{Analyses not in the plan}, reported as exploratory: the event studies of spending, ln spending and ln enrollment, the mechanical benchmarks, the long differences from earlier baselines (Figure~\ref{fig:evento_gasto}), and the event studies of enrollment by network (Figure~\ref{fig:matriculas}).
+\item \textbf{IPCA series}: extended back to January 2015 to deflate spending in 2015 and 2016; the months already in the repository are unchanged.
+\end{enumerate}
+
+\section{Simulations}\label{app:sim}
+
+Script \texttt{21\_teste\_simulado.py} keeps the real dose, state, region, VAAT position and 2021 transfer of the 5,208 networks and simulates covariates and outcomes with known effects. Table~1 of the addendum reports bias, coverage and rejection rates for every estimator. In short: the long difference, the dose-response estimators and the event study are unbiased with coverage between 93\% and 96\%; the cluster-robust pre-trend test over-rejects (8.6\%), the wild bootstrap does not (6.6\%); the breakdown value of $\bar M$ is below 1 in every draw with parallel trends; the negative control detects a confounder that biases the main estimate by 22\% in 8\% of the draws; and the kink is unbiased but has power of 16\% against full pass-through. The permutation test of the kink rejects 6\% to 9\% of the time under the null, because the support of $x$ around the threshold leaves placebo thresholds only between about 0.25 and 0.44, whose estimates overlap.
+
+\section{Data}\label{app:dados}
+
+$N$ is the mean of mathematics and Portuguese, each rescaled as $10(S - S_{\inf})/(S_{\sup} - S_{\inf})$ with Inep's limits (5th grade: mathematics 60 to 322, Portuguese 49 to 324; 9th grade: 100 to 400). If the effect is $d$ student standard deviations in both subjects, the change in $N$ is $5d(\sigma_{\text{mat}}/r_{\text{mat}} + \sigma_{\text{por}}/r_{\text{por}})$; with the student standard deviations of public schools in the Saeb 2023 (53.4 and 52.4 in the 5th grade, 53.1 and 51.5 in the 9th), one point of $N$ is 0.507 standard deviations in the 5th grade and 0.574 in the 9th. Spending follows the definition of \citet{cunha2026a}: function 12 plus subfunction 847 recorded outside it, minus higher education (subfunction 364). Every number in the text comes from a results file of the repository; the scripts are listed in its README.
+
+\section{Additional results}\label{app:extra}
+
+\begin{table}[h]
+\centering
+\caption{Regression kink of spending at the 2021 threshold}\label{tab:kink}
+\small
+\input{tabelas/t6_kink.tex}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.55\linewidth]{f8_creche.pdf}
+\caption{Municipal creche enrollment. Event-study coefficients of the dose on ln(1 + enrollment), $\times 100$, relative to 2019; specification of Figure~\ref{fig:matriculas}. Exploratory.}\label{fig:matriculas_creche}
+\end{figure}
+
+\end{document}

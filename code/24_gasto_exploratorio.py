@@ -6,7 +6,8 @@ understand its results. Every number here is reported as exploratory.
 2. Event studies of the two parts of spending per student: ln spending and ln enrollment.
 3. Mechanical benchmark for each year: the predicted money of year t per enrolled student (reais of
    2025) regressed on the dose, as the main specification. It is what the event-study coefficient of
-   year t would be, relative to 2019, with full pass-through and parallel trends.
+   year t would be, relative to 2019, with full pass-through and parallel trends. Also the same money as a
+   percentage of the network's 2019 spending per student, the benchmark for the event study of ln spending.
 4. Long differences of spending per student to 2025 from baselines before 2019 (2017, and the mean of
    2015 to 2018), with the specification of the plan.
 Inputs: results/22_base.csv, data/ipca_1737.json
@@ -69,6 +70,10 @@ if __name__ == '__main__':
         a['m'] = a[f'previsto_{ano}'] * a['razao'] * ip[2025] / ip[ano]
         rr = e22.ld(a.dropna(subset=['gasto_aluno_2019']), 'm', 'D')
         mec.append(dict(ano=ano, beta=rr['beta'], se=rr['se'], analise='mechanical benchmark'))
+        # the same money as a percentage of the network's 2019 spending per student, comparable with ln spending x 100
+        a['m'] = 100 * a[f'previsto_{ano}'] * a['razao'] * ip[2025] / ip[ano] / a['gasto_aluno_2019']
+        rr = e22.ld(a.dropna(subset=['gasto_aluno_2019']), 'm', 'D')
+        mec.append(dict(ano=ano, beta=rr['beta'], se=rr['se'], analise='mechanical benchmark, percent of 2019 spending'))
     out.append(pd.DataFrame(mec))
     # 4
     ld = []

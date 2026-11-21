@@ -1,0 +1,26 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrcr}
+\toprule
+Specification & Estimate & (SE) & 95\% interval & Networks \\
+\midrule
+Long difference, $\beta$ & 133.3$^{***}$ & (22.0) & [90.1, 176.4] & 5{,}145 \\
+ATT$^o$ & $-$117.5 & (120.7) & [$-$338.1, 132.8] & 5{,}145 \\
+Mean of $h'(D)$ over the treated & 220.9 & (67.0) & [91.1, 353.5] & 5{,}145 \\
+Mechanical benchmark & 280.6 & (2.8) & & \\
+\midrule
+(1) No covariates & 90.9$^{***}$ & (24.0) & [43.7, 138.1] & 5{,}145 \\
+(3) 2019 level as covariate & 127.0$^{***}$ & (30.0) & [68.2, 185.8] & 5{,}145 \\
+(4) Excluding Ceará & 127.2$^{***}$ & (22.9) & [82.2, 172.1] & 4{,}961 \\
+(5) Trimming the 1\% tails of the change & 143.2$^{***}$ & (20.8) & [102.3, 184.0] & 5{,}041 \\
+(6) Zero-dose networks only if $x \le 0.3$ & 137.3$^{***}$ & (22.1) & [93.9, 180.6] & 3{,}873 \\
+(7a) Dose from money received & 286.0$^{***}$ & (25.6) & [235.7, 336.4] & 5{,}145 \\
+(7b) $g_t$ from Fundeb revenue growth & $-$21.8 & (24.7) & [$-$70.3, 26.8] & 5{,}145 \\
+(7c) Dose in nominal reais & 143.7$^{***}$ & (23.9) & [96.7, 190.7] & 5{,}145 \\
+(7d) Dose per enrolled student & 105.5$^{***}$ & (17.7) & [70.8, 140.3] & 5{,}145 \\
+(8) Including the 105 late recipients & 127.5$^{***}$ & (20.1) & [87.9, 167.1] & 5{,}247 \\
+(9) Weighted by 2019 enrollment & 179.6$^{***}$ & (37.6) & [105.8, 253.3] & 5{,}145 \\
+(10) Heteroskedasticity-robust errors & 133.3$^{***}$ & (22.5) & [89.1, 177.5] & 5{,}145 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\begin{minipage}{0.95\linewidth}\footnotesize Change in spending per student from 2019 to 2025, in reais of 2025, per R\$ 1,000 of cumulative predicted dose. State fixed effects; covariates INSE 2019, ln population 2020 and ICMS share 2019; errors clustered by immediate region (509 clusters). ATT$^o$ and $h'$: cubic B-spline in the dose, bootstrap over immediate regions (999 draws). Mechanical benchmark: predicted 2025 VAAT money per enrolled student regressed on the dose with the same specification. Robustness rows follow the numbering of Section 8 of the plan. $^{*}$ $p<0.1$, $^{**}$ $p<0.05$, $^{***}$ $p<0.01$.\end{minipage}

@@ -1,0 +1,26 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrcr}
+\toprule
+Test & Estimate & Robust 95\% interval & $p$ \\
+\midrule
+Pass-through, main (MSE-optimal h, local linear) & 0.83 & [$-$6.60, 4.57] & 0.722 \\
+Pass-through, local quadratic & $-$1.39 & [$-$10.42, 4.27] & 0.411 \\
+Pass-through, h = 0.1 & 2.59 & [$-$8.00, 4.25] & 0.549 \\
+Pass-through, h = 0.2 & 3.49 & [$-$0.45, 4.55] & 0.108 \\
+Data check: complementation recorded as revenue in 2021 & 1.22 & [$-$0.39, 3.34] & 0.121 \\
+Difference in kinks: pre-period change (2016-17 to 2018-19) & 1.14 & [$-$0.99, 3.88] & 0.245 \\
+Difference in kinks: main minus pre-period change & 0.05 & [$-$9.42, 4.74] & 0.517 \\
+Predetermined: 2019 spending per student (reais of 2021) & $-$6{,}680.51 & [$-$50{,}734.23, 25{,}080.73] & 0.507 \\
+Predetermined: INSE 2019 & $-$2.79 & [$-$14.34, 4.49] & 0.305 \\
+Predetermined: ln population 2020 & $-$2.61 & [$-$23.93, 13.66] & 0.592 \\
+Predetermined: ICMS share 2019 & $-$0.61 & [$-$2.62, 0.65] & 0.239 \\
+Placebo threshold x = -0.10 & $-$12{,}669.86 & [$-$85{,}596.34, 48{,}236.52] & 0.584 \\
+Placebo threshold x = -0.05 & 57{,}742.41 & [$-$137{,}881.42, 309{,}348.18] & 0.452 \\
+Placebo threshold x = +0.05 & 8{,}407.49 & [$-$83{,}357.04, 121{,}350.82] & 0.716 \\
+Placebo threshold x = +0.10 & 101{,}986.84 & [$-$114{,}920.50, 434{,}035.24] & 0.255 \\
+Permutation test (h = 0.2, 200 placebo thresholds) & 20{,}967.74 &  & 0.000 \\
+Density test at x = 0 &  &  & 0.505 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\begin{minipage}{0.95\linewidth}\footnotesize Fuzzy regression kink at the 2021 threshold (\texttt{rdrobust}, local linear, triangular kernel, MSE-optimal bandwidth unless stated). Outcome: change in education spending per enrolled student between 2018-2019 and 2021-2022, reais of 2021. Pass-through: reais of spending per real of 2021 complementation. Sharp kinks for predetermined variables and placebo thresholds.\end{minipage}

@@ -115,6 +115,7 @@ to within 0.024%. Another 105 recipients were habilitated later and are kept apa
 | `25_matriculas_redes.py` | Exploratory, not in the plan: enrollment by municipality, network and stage, 2015 to 2025 (Censo Escolar), and event studies of enrollment by network and of the state share of public fundamental enrollment | `results/25_*` |
 | `26_etapa4.py` | Stage 4 of the plan: learning (P2) with its robustness checks and heterogeneity, the event study and linear-trend correction, the within-municipality comparison and negative control, and the secondary learning family (S1); implementation details in `pap/detalhes_etapa4.md` | `results/26_*` |
 | `27_honestdid.py` | HonestDiD relative-magnitudes bounds on the 2025 event-study coefficient of each grade (needs R with HonestDiD) | `results/27_*` |
+| `28_figuras.py` | Figures and tables of the paper and the numbers quoted in its text, from the results files | `paper/figuras/`, `paper/tabelas/`, `results/28_numeros.json` |
 
 Run them in order from `code/` with Python 3 (pandas, numpy, scipy, openpyxl and matplotlib; scripts 08
 and 13 also need `pdftotext`, from poppler):
@@ -139,6 +140,7 @@ python 25_matriculas_redes.py
 python 26_etapa4.py
 python 27_honestdid.py 5
 python 27_honestdid.py 9
+python 28_figuras.py
 ```
 
 Scripts 01 and 15 make one API call per municipality and year (about 5,570 calls per year; six to seven

@@ -40,10 +40,15 @@ ano;beta;se;analise;n;unidades;p_pre_wild;p
 2024.0000;0.0094;0.0016;ln enrollment;57288.0000;5208.0000;0.0010;
 2025.0000;0.0074;0.0020;ln enrollment;57288.0000;5208.0000;0.0010;
 2021.0000;159.0797;1.9312;mechanical benchmark;;;;
+2021.0000;2.6198;0.3208;mechanical benchmark, percent of 2019 spending;;;;
 2022.0000;216.5734;1.6125;mechanical benchmark;;;;
+2022.0000;3.5175;0.4236;mechanical benchmark, percent of 2019 spending;;;;
 2023.0000;287.3228;1.8340;mechanical benchmark;;;;
+2023.0000;4.6705;0.5606;mechanical benchmark, percent of 2019 spending;;;;
 2024.0000;302.3616;2.4276;mechanical benchmark;;;;
+2024.0000;4.9112;0.5928;mechanical benchmark, percent of 2019 spending;;;;
 2025.0000;280.6154;2.7336;mechanical benchmark;;;;
+2025.0000;4.5638;0.5554;mechanical benchmark, percent of 2019 spending;;;;
 ;133.2665;21.9782;long difference 2019 to 2025 (plan);5145.0000;;;0.0000
 ;3.4227;23.7552;long difference 2017 to 2025;5134.0000;;;0.8855
 ;-17.9874;23.6198;long difference, mean of 2015-2018 to 2025;4946.0000;;;0.4467
