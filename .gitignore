@@ -16,3 +16,8 @@ paper/*.out
 paper/*.fls
 paper/*.fdb_latexmk
 data/siconfi/receitas_ic_*.csv
+paper/*.bbl
+paper/*.blg
+paper/*.ttt
+paper/*.fff
+paper/*.xdv
